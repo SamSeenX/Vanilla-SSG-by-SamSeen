@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zero Hydration Architecture | VanillaSSG</title>
+  <meta name="description" content="Learn how pre-rendering dynamic data at build time eliminates Cumulative Layout Shifts and delivers 100/100 Lighthouse performance metrics.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Zero Hydration Architecture",
+  "description": "Learn how pre-rendering dynamic data at build time eliminates Cumulative Layout Shifts and delivers 100/100 Lighthouse performance metrics.",
+  "datePublished": "2026-01-15",
+  "author": {
+    "@type": "Organization",
+    "name": "VanillaSSG Community"
+  }
+}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="header-container">
+    <a href="/" class="brand-logo" aria-label="Home">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">VanillaSSG</span>
+    </a>
+    <nav class="site-nav" aria-label="Main Navigation">
+      <ul class="nav-list">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/items/item-one.html" class="nav-link active" aria-current="page">Items</a></li>
+        <li><a href="/about.html" class="nav-link">About</a></li>
+        <li><a href="/contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button id="theme-toggle-btn" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </div>
+</header>
+  <main class="container">
+    <article class="page-header">
+      <span class="badge" style="color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem;">Architecture</span>
+      <h1>Zero Hydration Architecture</h1>
+      <p style="color: var(--text-secondary);">Why shipping pure HTML beats waiting for mega-bundles to hydrate.</p>
+    </article>
+    <div class="prose">
+      <p>Learn how pre-rendering dynamic data at build time eliminates Cumulative Layout Shifts and delivers 100/100 Lighthouse performance metrics.</p>
+      <p>This static page was generated automatically during the build step using a lightweight Node script. Search engine crawlers can index every word instantly without needing a JavaScript execution engine.</p>
+      <p><a href="/" class="btn btn-secondary">&larr; Back to Home</a></p>
+    </div>
+  </main>
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <div class="footer-logo">⚡ VanillaSSG</div>
+      <p class="footer-tagline">High performance, zero-hydration static site architecture.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer Navigation">
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/items/item-one.html">Collection Demo</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Trust & Legal</h4>
+        <ul>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+          <li><a href="/contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 VanillaSSG Starter. Built for speed, search engines, and developer sanity.</p>
+  </div>
+</footer>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

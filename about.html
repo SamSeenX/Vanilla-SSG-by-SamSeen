@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About The Philosophy | VanillaSSG</title>
+  <meta name="description" content="Discover why the Vanilla SSG standard rejects unnecessary client-side UI frameworks in favor of resilient static HTML.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+<body>
+  <header class="site-header">
+  <div class="header-container">
+    <a href="/" class="brand-logo" aria-label="Home">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">VanillaSSG</span>
+    </a>
+    <nav class="site-nav" aria-label="Main Navigation">
+      <ul class="nav-list">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/items/item-one.html" class="nav-link">Items</a></li>
+        <li><a href="/about.html" class="nav-link active" aria-current="page">About</a></li>
+        <li><a href="/contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button id="theme-toggle-btn" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </div>
+</header>
+
+  <main class="container">
+    <div class="page-header">
+      <h1>About the Architecture</h1>
+      <p>Returning to foundational web principles without losing modern developer ergonomics.</p>
+    </div>
+
+    <div class="prose">
+      <p>Modern frontend engineering has drifted toward extreme complexity. Websites that are primarily textual or content-focused often ship hundreds of kilobytes of framework runtimes, resulting in hydration delays, fragile build pipelines, and degraded Core Web Vitals.</p>
+      
+      <p>VanillaSSG pairs Vite's lightning-fast development server with plain ES6 modules and custom Node pre-render scripts. The output is pure static HTML that can be hosted anywhere, cached forever, and indexed instantly by search engines.</p>
+
+      <h2>Core Tenets</h2>
+      <ul>
+        <li><strong>Static First:</strong> Content must exist directly in HTML without requiring JavaScript execution.</li>
+        <li><strong>Sub-200-Line Limit:</strong> Every single file stays under 200 lines to guarantee modularity and readability.</li>
+        <li><strong>Zero Lock-in:</strong> No proprietary template syntax or heavy framework plugins.</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <div class="footer-logo">⚡ VanillaSSG</div>
+      <p class="footer-tagline">High performance, zero-hydration static site architecture.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer Navigation">
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/items/item-one.html">Collection Demo</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Trust & Legal</h4>
+        <ul>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+          <li><a href="/contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 VanillaSSG Starter. Built for speed, search engines, and developer sanity.</p>
+  </div>
+</footer>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "vanilla-ssg-by-samseen",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Production-ready Vanilla JS + Vite Static Site Generator starter kit",
+  "scripts": {
+    "dev": "node scripts/generate-pages.js && vite",
+    "build": "node scripts/generate-pages.js && node scripts/sync-layout.js && vite build",
+    "generate": "node scripts/generate-pages.js",
+    "sync:layout": "node scripts/sync-layout.js",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  }
+}

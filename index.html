@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VanillaSSG — High Performance Static Site Architecture</title>
+  <meta name="description" content="Production-ready Vanilla JavaScript + Vite static site generator template. Zero hydration overhead, instant SEO crawlability, and AdSense readiness.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "VanillaSSG",
+    "url": "https://your-domain.com",
+    "description": "High performance, zero-hydration static site architecture."
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="header-container">
+    <a href="/" class="brand-logo" aria-label="Home">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">VanillaSSG</span>
+    </a>
+    <nav class="site-nav" aria-label="Main Navigation">
+      <ul class="nav-list">
+        <li><a href="/" class="nav-link active" aria-current="page">Home</a></li>
+        <li><a href="/items/item-one.html" class="nav-link">Items</a></li>
+        <li><a href="/about.html" class="nav-link">About</a></li>
+        <li><a href="/contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button id="theme-toggle-btn" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </div>
+</header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>The Minimalist Static Web Standard</h1>
+      <p>Build blazing fast, crawlable multi-page websites using Vite, plain ES6 modules, and zero runtime UI frameworks.</p>
+      <div class="hero-actions">
+        <a href="/items/item-one.html" class="btn btn-primary">Explore Demo Pages</a>
+        <a href="/about.html" class="btn btn-secondary">Read the Philosophy</a>
+      </div>
+    </section>
+
+    <section class="features-grid">
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <h3>Zero Hydration Overhead</h3>
+        <p>Deliver pre-rendered HTML straight from the edge. No waiting for megabytes of client-side JavaScript to boot before users can read.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <h3>100% Crawlable SEO</h3>
+        <p>Every route exists as physical static HTML with complete OpenGraph metadata and structured JSON-LD schemas embedded directly.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📏</div>
+        <h3>Strict Sub-200-Line Code</h3>
+        <p>Enforce clean modularity across all scripts and stylesheets. Keep logic simple, maintainable, and resilient over decades.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <div class="footer-logo">⚡ VanillaSSG</div>
+      <p class="footer-tagline">High performance, zero-hydration static site architecture.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer Navigation">
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/items/item-one.html">Collection Demo</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Trust & Legal</h4>
+        <ul>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+          <li><a href="/contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 VanillaSSG Starter. Built for speed, search engines, and developer sanity.</p>
+  </div>
+</footer>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
