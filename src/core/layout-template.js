@@ -1,6 +1,6 @@
 /**
  * Core Layout Template Engine
- * Generates semantic, accessible header and footer with active route indicators.
+ * Generates semantic header, footer, and complete OpenGraph/SEO metadata.
  */
 
 const NAV_ITEMS = [
@@ -9,6 +9,32 @@ const NAV_ITEMS = [
   { label: 'About', href: '/about.html' },
   { label: 'Contact', href: '/contact.html' }
 ];
+
+const SITE_URL = 'https://your-domain.com';
+const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
+
+export function getSeoMetaHtml({
+  title = 'VanillaSSG: High Performance Static Site Architecture',
+  description = 'Production-ready Vanilla JavaScript + Vite static site generator template.',
+  path = '/',
+  image = DEFAULT_OG_IMAGE,
+  type = 'website'
+} = {}) {
+  const fullUrl = `${SITE_URL}${path}`;
+  return `  <link rel="canonical" href="${fullUrl}">
+  <meta property="og:site_name" content="VanillaSSG">
+  <meta property="og:type" content="${type}">
+  <meta property="og:title" content="${title}">
+  <meta property="og:description" content="${description}">
+  <meta property="og:url" content="${fullUrl}">
+  <meta property="og:image" content="${image}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${title}">
+  <meta name="twitter:description" content="${description}">
+  <meta name="twitter:image" content="${image}">`;
+}
 
 export function getHeaderHtml(currentPath = '/') {
   const navLinks = NAV_ITEMS.map((item) => {

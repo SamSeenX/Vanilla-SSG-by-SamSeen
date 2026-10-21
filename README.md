@@ -42,9 +42,12 @@ vanilla-ssg-template/
 ├── vite.config.js          # Multi-page scanner and layout injection
 ├── public/
 │   ├── favicon.svg         # Default vector icon
-│   └── robots.txt          # Crawler instructions
+│   ├── og-image.png        # Standard 1200x630 social preview banner
+│   ├── robots.txt          # Crawler instructions
+│   └── sitemap.xml         # Auto-generated XML sitemap
 ├── scripts/
 │   ├── generate-pages.js   # Pre-render dynamic data to static HTML
+│   ├── generate-sitemap.js # Auto-discover and generate XML sitemap
 │   └── sync-layout.js      # Layout synchronization utility
 └── src/
     ├── main.js             # Client bootstrapper

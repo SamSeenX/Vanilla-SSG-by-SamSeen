@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { getHeaderHtml, getFooterHtml } from '../src/core/layout-template.js';
+import { getHeaderHtml, getFooterHtml, getSeoMetaHtml } from '../src/core/layout-template.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = resolve(__dirname, '..');
@@ -38,6 +38,12 @@ function generateItemPage(item) {
   const currentPath = `/items/${item.id}.html`;
   const headerHtml = getHeaderHtml(currentPath);
   const footerHtml = getFooterHtml();
+  const seoMetaHtml = getSeoMetaHtml({
+    title: `${item.title} | VanillaSSG`,
+    description: item.description,
+    path: currentPath,
+    type: 'article'
+  });
   const schemaJson = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -59,6 +65,7 @@ function generateItemPage(item) {
   <meta name="description" content="${item.description}">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/src/styles/main.css">
+${seoMetaHtml}
   <script type="application/ld+json">
 ${schemaJson}
   </script>
