@@ -3,6 +3,8 @@
  * Generates semantic header, footer, and complete OpenGraph/SEO metadata.
  */
 
+import { SITE_URL, SITE_NAME, OG_IMAGE_URL } from '../../scripts/site-config.js';
+
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Items', href: '/items/item-one.html' },
@@ -10,27 +12,35 @@ const NAV_ITEMS = [
   { label: 'Contact', href: '/contact.html' }
 ];
 
-const SITE_URL = 'https://your-domain.com';
-const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
-
 export function getSeoMetaHtml({
   title = 'VanillaSSG: High Performance Static Site Architecture',
   description = 'Production-ready Vanilla JavaScript + Vite static site generator template.',
   path = '/',
-  image = DEFAULT_OG_IMAGE,
+  image = OG_IMAGE_URL,
   type = 'website'
 } = {}) {
   const fullUrl = `${SITE_URL}${path}`;
-  return `  <link rel="canonical" href="${fullUrl}">
-  <meta property="og:site_name" content="VanillaSSG">
+  return `  <!-- Search Engine & Discovery Directives -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
+  <!-- Canonical & OpenGraph -->
+  <link rel="canonical" href="${fullUrl}">
+  <meta property="og:site_name" content="${SITE_NAME}">
+  <meta property="og:locale" content="en_US">
   <meta property="og:type" content="${type}">
   <meta property="og:title" content="${title}">
   <meta property="og:description" content="${description}">
   <meta property="og:url" content="${fullUrl}">
   <meta property="og:image" content="${image}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="${SITE_NAME} Emblem">
+
+  <!-- Twitter Compact Card (Side-by-Side Thumbnail) -->
+  <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${title}">
   <meta name="twitter:description" content="${description}">
   <meta name="twitter:image" content="${image}">`;

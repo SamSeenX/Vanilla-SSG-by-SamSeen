@@ -1,12 +1,13 @@
 import fs from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { SITE_URL } from './site-config.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = resolve(__dirname, '..');
 const PUBLIC_DIR = resolve(ROOT_DIR, 'public');
 const SITEMAP_PATH = resolve(PUBLIC_DIR, 'sitemap.xml');
-const BASE_URL = 'https://your-domain.com';
+const BASE_URL = SITE_URL;
 
 const SCAN_DIRS = ['', 'items'];
 

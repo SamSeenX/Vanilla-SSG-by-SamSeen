@@ -5,19 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About The Philosophy | VanillaSSG</title>
   <meta name="description" content="Discover why the Vanilla SSG standard rejects unnecessary client-side UI frameworks in favor of resilient static HTML.">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/src/styles/main.css">
-  <link rel="canonical" href="https://your-domain.com/about.html">
+    <!-- Search Engine & Discovery Directives -->
+
+  <!-- OpenGraph Rich Card Metadata -->
+
+  <!-- Twitter Compact Card (Side-by-Side Thumbnail) -->
+    <!-- Search Engine & Discovery Directives -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
+  <!-- OpenGraph Rich Card Metadata -->
   <meta property="og:site_name" content="VanillaSSG">
-  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
   <meta property="og:title" content="About The Philosophy | VanillaSSG">
   <meta property="og:description" content="Discover why the Vanilla SSG standard rejects unnecessary client-side UI frameworks in favor of resilient static HTML.">
   <meta property="og:url" content="https://your-domain.com/about.html">
-  <meta property="og:image" content="https://your-domain.com/og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://your-domain.com/og-thumbnail.png">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="VanillaSSG Emblem">
+
+  <!-- Twitter Compact Card (Side-by-Side Thumbnail) -->
+  <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="About The Philosophy | VanillaSSG">
   <meta name="twitter:description" content="Discover why the Vanilla SSG standard rejects unnecessary client-side UI frameworks in favor of resilient static HTML.">
-  <meta name="twitter:image" content="https://your-domain.com/og-image.png">
+  <meta name="twitter:image" content="https://your-domain.com/og-thumbnail.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script>(function(){var s=localStorage.getItem('vanilla_app_theme'),p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(!s&&p)){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <link rel="canonical" href="https://your-domain.com/about.html">
 </head>
 <body>
   <header class="site-header">
@@ -47,14 +66,14 @@
     </div>
 
     <div class="prose">
-      <p>Modern frontend engineering has drifted toward extreme complexity. Websites that are primarily textual or content-focused often ship hundreds of kilobytes of framework runtimes, resulting in hydration delays, fragile build pipelines, and degraded Core Web Vitals.</p>
+      <p>Modern frontend engineering has drifted toward extreme complexity. Websites that are primarily textual or content-focused often ship hundreds of kilobytes of framework runtimes, resulting in hydration delays, fragile build pipelines, and degraded <a href="/items/item-two.html" class="cross-ref-link" title="Explore Core Web Vitals & Performance">Core Web Vitals</a>.</p>
       
       <p>VanillaSSG pairs Vite's lightning-fast development server with plain ES6 modules and custom Node pre-render scripts. The output is pure static HTML that can be hosted anywhere, cached forever, and indexed instantly by search engines.</p>
 
       <h2>Core Tenets</h2>
       <ul>
         <li><strong>Static First:</strong> Content must exist directly in HTML without requiring JavaScript execution.</li>
-        <li><strong>Sub-200-Line Limit:</strong> Every single file stays under 200 lines to guarantee modularity and readability.</li>
+        <li><strong>Sub-<a href="/items/item-three.html" class="cross-ref-link" title="Explore 200-line Rule Best Practices">200-Line</a> Limit:</strong> Every single file stays under 200 lines to guarantee modularity and readability.</li>
         <li><strong>Zero Lock-in:</strong> No proprietary template syntax or heavy framework plugins.</li>
       </ul>
     </div>
