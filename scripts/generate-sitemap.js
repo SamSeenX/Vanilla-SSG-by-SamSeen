@@ -1,3 +1,7 @@
+/**
+ * Automated XML Sitemap Generator
+ * Extracts real filesystem modification timestamps (mtime) and builds valid sitemap.xml.
+ */
 import fs from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -13,7 +17,6 @@ const SCAN_DIRS = ['', 'items'];
 
 function findHtmlPages() {
   const pages = [];
-  const today = new Date().toISOString().split('T')[0];
 
   SCAN_DIRS.forEach((dir) => {
     const fullDir = resolve(ROOT_DIR, dir);
@@ -22,6 +25,10 @@ function findHtmlPages() {
     const files = fs.readdirSync(fullDir);
     files.forEach((file) => {
       if (!file.endsWith('.html')) return;
+
+      const filePath = resolve(fullDir, file);
+      const stat = fs.statSync(filePath);
+      const mtimeIso = stat.mtime.toISOString().split('T')[0];
 
       let urlPath = dir ? `/${dir}/${file}` : (file === 'index.html' ? '/' : `/${file}`);
       let priority = '0.8';
@@ -33,11 +40,14 @@ function findHtmlPages() {
       } else if (file === 'privacy.html' || file === 'terms.html') {
         priority = '0.3';
         changefreq = 'monthly';
+      } else if (file === 'index.html' && dir === 'items') {
+        priority = '0.9';
+        changefreq = 'weekly';
       }
 
       pages.push({
         loc: `${BASE_URL}${urlPath}`,
-        lastmod: today,
+        lastmod: mtimeIso,
         changefreq,
         priority
       });
@@ -47,7 +57,7 @@ function findHtmlPages() {
   return pages;
 }
 
-function generateSitemap() {
+export function generateSitemap() {
   const pages = findHtmlPages();
   const xmlEntries = pages.map((p) => `  <url>
     <loc>${p.loc}</loc>
@@ -67,6 +77,9 @@ ${xmlEntries}
   }
 
   fs.writeFileSync(SITEMAP_PATH, xmlContent, 'utf8');
+  console.log(`[Sitemap Generator] Generated sitemap.xml with ${pages.length} URLs using file mtime.`);
 }
 
-generateSitemap();
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  generateSitemap();
+}

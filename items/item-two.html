@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Google AdSense & SEO Optimization | VanillaSSG</title>
   <meta name="description" content="A deep dive into static HTML crawling benefits, semantic landmark tags, and explicit dimensions to safeguard your AdSense revenue and Core Web Vitals.">
-    <!-- Search Engine & Discovery Directives -->
+    <!-- Search Engine Directives -->
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 
-  <!-- OpenGraph Rich Card Metadata -->
+  <!-- Canonical & OpenGraph -->
   <meta property="og:site_name" content="VanillaSSG">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
@@ -18,12 +18,12 @@
   <meta property="og:description" content="A deep dive into static HTML crawling benefits, semantic landmark tags, and explicit dimensions to safeguard your AdSense revenue and Core Web Vitals.">
   <meta property="og:url" content="https://your-domain.com/items/item-two.html">
   <meta property="og:image" content="https://your-domain.com/og-thumbnail.png">
-  <meta property="og:image:width" content="800">
-  <meta property="og:image:height" content="800">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:alt" content="VanillaSSG Emblem">
 
-  <!-- Twitter Compact Card (Side-by-Side Thumbnail) -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Google AdSense & SEO Optimization | VanillaSSG">
   <meta name="twitter:description" content="A deep dive into static HTML crawling benefits, semantic landmark tags, and explicit dimensions to safeguard your AdSense revenue and Core Web Vitals.">
@@ -31,12 +31,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <script>(function(){var s=localStorage.getItem('vanilla_app_theme'),p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(!s&&p)){document.documentElement.setAttribute('data-theme','dark');}})();</script>
   <link rel="stylesheet" href="/src/styles/main.css">
-  <!-- Search Engine & Discovery Directives -->
-
-  <!-- Canonical & OpenGraph -->
   <link rel="canonical" href="https://your-domain.com/items/item-two.html">
-
-  <!-- Twitter Compact Card (Side-by-Side Thumbnail) -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -44,12 +39,39 @@
   "headline": "Google AdSense & SEO Optimization",
   "description": "A deep dive into static HTML crawling benefits, semantic landmark tags, and explicit dimensions to safeguard your AdSense revenue and Core Web Vitals.",
   "datePublished": "2026-02-10",
+  "mainEntityOfPage": "https://your-domain.com/items/item-two.html",
   "author": {
     "@type": "Organization",
     "name": "VanillaSSG Community"
   }
 }
-  </script>
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://your-domain.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Items",
+      "item": "https://your-domain.com/items/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Google AdSense & SEO Optimization",
+      "item": "https://your-domain.com/items/item-two.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
   <header class="site-header">
@@ -61,7 +83,7 @@
     <nav class="site-nav" aria-label="Main Navigation">
       <ul class="nav-list">
         <li><a href="/" class="nav-link">Home</a></li>
-        <li><a href="/items/item-one.html" class="nav-link">Items</a></li>
+        <li><a href="/items/" class="nav-link active" aria-current="page">Items</a></li>
         <li><a href="/about.html" class="nav-link">About</a></li>
         <li><a href="/contact.html" class="nav-link">Contact</a></li>
       </ul>
@@ -80,7 +102,7 @@
     <div class="prose">
       <p>A deep dive into static HTML crawling benefits, semantic landmark tags, and explicit dimensions to safeguard your AdSense revenue and Core Web Vitals.</p>
       <p>This static page was generated automatically during the build step using a lightweight Node script. Search engine crawlers can index every word instantly without needing a JavaScript execution engine.</p>
-      <p><a href="/" class="btn btn-secondary">&larr; Back to Home</a></p>
+      <p><a href="/items/" class="btn btn-secondary">&larr; Back to Collection</a></p>
     </div>
   </main>
   <footer class="site-footer">
@@ -94,7 +116,7 @@
         <h4>Navigation</h4>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/items/item-one.html">Collection Demo</a></li>
+          <li><a href="/items/">Collection Demo</a></li>
           <li><a href="/about.html">About</a></li>
         </ul>
       </div>

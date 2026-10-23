@@ -1,7 +1,7 @@
 /**
  * Automated SEO & OpenGraph Metadata Synchronizer
- * Injects complete OpenGraph, compact Twitter card (summary), Google indexing directives,
- * and mobile browser theme-color meta tags across all static pages.
+ * Injects clean OpenGraph, Twitter card, robots directives, and theme-color meta tags
+ * while aggressively cleaning prior comment headers and preventing markup duplication.
  */
 import fs from 'fs';
 import path from 'path';
@@ -31,15 +31,15 @@ function getHtmlFiles() {
 
 function generateMetaBlock(title, desc, canonicalUrl, isWebsite) {
   const cleanTitle = (title || SITE_NAME).replace(/"/g, '&quot;');
-  const cleanDesc = (desc || "High-performance static site architecture with vanilla JavaScript.").replace(/"/g, '&quot;');
+  const cleanDesc = (desc || 'High-performance static site architecture with vanilla JavaScript.').replace(/"/g, '&quot;');
   const ogType = isWebsite ? 'website' : 'article';
 
-  return `  <!-- Search Engine & Discovery Directives -->
+  return `  <!-- Search Engine Directives -->
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 
-  <!-- OpenGraph Rich Card Metadata -->
+  <!-- Canonical & OpenGraph -->
   <meta property="og:site_name" content="${SITE_NAME}">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="${ogType}">
@@ -47,12 +47,12 @@ function generateMetaBlock(title, desc, canonicalUrl, isWebsite) {
   <meta property="og:description" content="${cleanDesc}">
   <meta property="og:url" content="${canonicalUrl}">
   <meta property="og:image" content="${OG_IMAGE_URL}">
-  <meta property="og:image:width" content="800">
-  <meta property="og:image:height" content="800">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:alt" content="${SITE_NAME} Emblem">
 
-  <!-- Twitter Compact Card (Side-by-Side Thumbnail) -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${cleanTitle}">
   <meta name="twitter:description" content="${cleanDesc}">
@@ -63,15 +63,12 @@ function processHtmlFile(relPath) {
   const fullPath = path.join(ROOT_DIR, relPath);
   let content = fs.readFileSync(fullPath, 'utf8');
 
-  // Extract title
   const titleMatch = content.match(/<title>([\s\S]*?)<\/title>/i);
   const title = titleMatch ? titleMatch[1].trim() : SITE_NAME;
 
-  // Extract description
   const descMatch = content.match(/<meta\s+name="description"\s+content="([\s\S]*?)"/i);
   const desc = descMatch ? descMatch[1].trim() : '';
 
-  // Extract canonical URL
   const canonMatch = content.match(/<link\s+rel="canonical"\s+href="([\s\S]*?)"/i);
   let canonicalUrl = canonMatch ? canonMatch[1].trim() : '';
   if (!canonicalUrl) {
@@ -79,10 +76,13 @@ function processHtmlFile(relPath) {
     canonicalUrl = normPath === 'index.html' ? `${SITE_URL}/` : `${SITE_URL}/${normPath}`;
   }
 
-  const isWebsite = relPath === 'index.html' || relPath.endsWith('index.html');
+  const isWebsite = relPath === 'index.html' || relPath === 'items/index.html' || relPath.endsWith('index.html');
   const metaBlock = generateMetaBlock(title, desc, canonicalUrl, isWebsite);
 
-  // Strip existing og, twitter, robots, or theme-color tags to prevent duplicate clutter
+  // Strip existing comments related to SEO directives to eliminate accumulation
+  content = content.replace(/\s*<!--\s*(?:Search Engine|OpenGraph|Twitter|Canonical)[^>]*-->/gi, '');
+
+  // Strip existing og, twitter, robots, or theme-color meta tags
   content = content.replace(/\s*<meta\s+(?:property="og:[^"]*"|name="twitter:[^"]*"|name="robots"|name="theme-color")[^>]*>/gi, '');
 
   // Insert cleanly right before the favicon or stylesheet link
@@ -91,6 +91,12 @@ function processHtmlFile(relPath) {
   } else if (content.includes('<link rel="stylesheet"')) {
     content = content.replace('<link rel="stylesheet"', `${metaBlock}\n  <link rel="stylesheet"`);
   }
+
+  // Ensure clean indentation and collapse multiple blank lines inside head
+  content = content.replace(/<head>([\s\S]*?)<\/head>/i, (m, headInner) => {
+    const cleanInner = headInner.replace(/\n{3,}/g, '\n\n');
+    return `<head>${cleanInner}</head>`;
+  });
 
   fs.writeFileSync(fullPath, content, 'utf8');
 }
@@ -102,7 +108,7 @@ export function syncSeoMeta() {
     processHtmlFile(f);
     count++;
   });
-  console.log(`[SEO Sync] Injected complete OpenGraph & compact Twitter cards across ${count} HTML pages.`);
+  console.log(`[SEO Sync] Synced clean metadata across ${count} HTML pages.`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

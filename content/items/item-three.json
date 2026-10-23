@@ -1,0 +1,8 @@
+{
+  "id": "item-three",
+  "title": "The Sub-200-Line Codebase Rule",
+  "tagline": "Modular simplicity that keeps your codebase clean and AI-friendly.",
+  "description": "Why strict file size limits prevent spaghetti dependencies and maintain effortless refactoring throughout the entire software lifecycle.",
+  "category": "Best Practices",
+  "publishedDate": "2026-03-01"
+}
