@@ -1,6 +1,6 @@
 /**
  * Structured Data (JSON-LD) Sub-Template
- * Generates valid schema.org objects for WebSite, Article, and BreadcrumbList.
+ * Generates valid schema.org objects for WebSite, SoftwareApplication, Article, and BreadcrumbList.
  */
 
 import { SITE_URL, SITE_NAME } from '../../../scripts/site-config.js';
@@ -12,6 +12,23 @@ export function getWebSiteSchema() {
     'name': SITE_NAME,
     'url': SITE_URL,
     'description': 'High performance, zero-hydration static site architecture.'
+  };
+}
+
+export function getSoftwareApplicationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    'name': SITE_NAME,
+    'operatingSystem': 'Any',
+    'applicationCategory': 'DeveloperApplication',
+    'offers': {
+      '@type': 'Offer',
+      'price': '0',
+      'priceCurrency': 'USD'
+    },
+    'description': 'Production-ready Vanilla JavaScript + Vite static site generator template with zero hydration overhead.',
+    'url': SITE_URL
   };
 }
 

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VanillaSSG — High Performance Static Site Architecture</title>
-  <meta name="description" content="Production-ready Vanilla JavaScript + Vite static site generator template. Zero hydration overhead, instant SEO crawlability, and AdSense readiness.">
+  <title>VanillaSSG: Zero-Hydration Vanilla JS Static Site Generator</title>
+  <meta name="description" content="Production-ready, zero-hydration static site generator built with Vite and vanilla JS. Instant 100/100 Lighthouse performance, $0/month free edge hosting, and strict sub-200-line modularity.">
     <!-- Search Engine Directives -->
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
@@ -14,8 +14,8 @@
   <meta property="og:site_name" content="VanillaSSG">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="VanillaSSG — High Performance Static Site Architecture">
-  <meta property="og:description" content="Production-ready Vanilla JavaScript + Vite static site generator template. Zero hydration overhead, instant SEO crawlability, and AdSense readiness.">
+  <meta property="og:title" content="VanillaSSG: Zero-Hydration Vanilla JS Static Site Generator">
+  <meta property="og:description" content="Production-ready, zero-hydration static site generator built with Vite and vanilla JS. Instant 100/100 Lighthouse performance, $0/month free edge hosting, and strict sub-200-line modularity.">
   <meta property="og:url" content="https://your-domain.com/">
   <meta property="og:image" content="https://your-domain.com/og-thumbnail.png">
   <meta property="og:image:width" content="1200">
@@ -25,8 +25,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="VanillaSSG — High Performance Static Site Architecture">
-  <meta name="twitter:description" content="Production-ready Vanilla JavaScript + Vite static site generator template. Zero hydration overhead, instant SEO crawlability, and AdSense readiness.">
+  <meta name="twitter:title" content="VanillaSSG: Zero-Hydration Vanilla JS Static Site Generator">
+  <meta name="twitter:description" content="Production-ready, zero-hydration static site generator built with Vite and vanilla JS. Instant 100/100 Lighthouse performance, $0/month free edge hosting, and strict sub-200-line modularity.">
   <meta name="twitter:image" content="https://your-domain.com/og-thumbnail.png">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <script>(function(){var s=localStorage.getItem('vanilla_app_theme'),p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(!s&&p)){document.documentElement.setAttribute('data-theme','dark');}})();</script>
@@ -35,10 +35,13 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
+    "@type": "SoftwareApplication",
     "name": "VanillaSSG",
-    "url": "https://your-domain.com",
-    "description": "High performance, zero-hydration static site architecture."
+    "operatingSystem": "Any",
+    "applicationCategory": "DeveloperApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Production-ready Vanilla JavaScript + Vite static site generator template with zero hydration overhead.",
+    "url": "https://your-domain.com"
   }
   </script>
 </head>
@@ -49,27 +52,65 @@
       <span class="logo-icon">⚡</span>
       <span class="logo-text">VanillaSSG</span>
     </a>
-    <nav class="site-nav" aria-label="Main Navigation">
+    <nav id="site-nav" class="site-nav" aria-label="Main Navigation">
       <ul class="nav-list">
         <li><a href="/" class="nav-link active" aria-current="page">Home</a></li>
         <li><a href="/items/" class="nav-link">Items</a></li>
         <li><a href="/about.html" class="nav-link">About</a></li>
         <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        <li><a href="https://github.com/SamSeenX/Vanilla-SSG-by-SamSeen" class="nav-link" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
       </ul>
     </nav>
     <div class="header-actions">
       <button id="theme-toggle-btn" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </div>
 </header>
 
   <main class="container">
     <section class="hero">
-      <h1>The Minimalist Static Web Standard</h1>
-      <p>Build blazing fast, crawlable multi-page websites using Vite, plain ES6 modules, and zero runtime UI frameworks.</p>
+      <span class="badge" style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em;">Vite 6 &bull; Pure Static Edge</span>
+      <h1 style="margin-top: 0.5rem;">Zero-Hydration Vanilla JS Static Site Generator</h1>
+      <p>Ship blazingly fast multi-page static websites straight to the edge with pure HTML, Vite, and zero client framework runtime. Host 100% free on Cloudflare Pages.</p>
+      
       <div class="hero-actions">
-        <a href="/items/item-one.html" class="btn btn-primary">Explore Demo Pages</a>
-        <a href="/about.html" class="btn btn-secondary">Read the Philosophy</a>
+        <a href="https://github.com/SamSeenX/Vanilla-SSG-by-SamSeen" class="btn btn-primary" target="_blank" rel="noopener noreferrer">⚡ Use Template on GitHub</a>
+        <a href="/items/" class="btn btn-secondary">📖 Explore Live Demo Pages</a>
+      </div>
+
+      <div class="terminal-card">
+        <div class="terminal-header">
+          <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <span>Quick Scaffold</span>
+        </div>
+        <div class="terminal-body">
+          <code id="copy-cmd-text" class="terminal-code">npx degit SamSeenX/Vanilla-SSG-by-SamSeen my-site</code>
+          <button id="copy-cmd-btn" class="copy-btn" aria-label="Copy scaffold command">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics-strip">
+      <div class="metric-item">
+        <div class="metric-num">0 KB</div>
+        <div class="metric-label">Client JS Runtime</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-num">100/100</div>
+        <div class="metric-label"><a href="/items/item-one/" class="cross-ref-link" title="Explore Lighthouse 100/100 Metrics">Lighthouse</a> Performance</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-num">$0/mo</div>
+        <div class="metric-label">Cloudflare Edge Hosting</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-num">&lt;200</div>
+        <div class="metric-label">Lines Per File Limit</div>
       </div>
     </section>
 
@@ -77,19 +118,37 @@
       <div class="card">
         <div class="card-icon">🚀</div>
         <h3>Zero Hydration Overhead</h3>
-        <p>Deliver pre-rendered HTML straight from the edge. No waiting for megabytes of client-side JavaScript to boot before users can read.</p>
+        <p>Pre-render complete HTML documents straight from edge servers. No waiting for megabytes of framework JavaScript to hydrate before users can read.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">☁️</div>
+        <h3>$0/Month Edge Hosting</h3>
+        <p>Eliminate expensive VPS servers and database bills. Deploy pure static HTML to Cloudflare Pages or GitHub Pages with unlimited bandwidth.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📝</div>
+        <h3>Native Markdown Compiler</h3>
+        <p>Write content in Markdown with YAML frontmatter. Builds word counts, reading times, and Google Article schemas with zero dependencies.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3>Dynamic Vector OG Cards</h3>
+        <p>Every article automatically generates a custom 1200x630 vector SVG social preview card with branded typography and category tags.</p>
       </div>
 
       <div class="card">
         <div class="card-icon">🔍</div>
-        <h3>100% Crawlable SEO</h3>
-        <p>Every route exists as physical static HTML with complete OpenGraph metadata and structured JSON-LD schemas embedded directly.</p>
+        <h3>Search Crawler Directives</h3>
+        <p>Automated XML sitemaps using real file modification dates (mtime), dynamic robots.txt sync, RSS 2.0 feed, and 404 crawler guard.</p>
       </div>
 
       <div class="card">
         <div class="card-icon">📏</div>
         <h3>Strict Sub-200-Line Code</h3>
-        <p>Enforce clean modularity across all scripts and stylesheets. Keep logic simple, maintainable, and resilient over decades.</p>
+        <p>Modular simplicity across all scripts and styles keeps logic maintainable, auditable, and resilient to AI context saturation.</p>
       </div>
     </section>
   </main>

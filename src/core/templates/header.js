@@ -17,6 +17,11 @@ export function getHeaderHtml(currentPath = '/') {
     ${navHtml}
     <div class="header-actions">
       <button id="theme-toggle-btn" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </div>
 </header>`;
