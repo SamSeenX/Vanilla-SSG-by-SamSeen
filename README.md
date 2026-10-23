@@ -17,6 +17,14 @@
 
 ---
 
+### The Modern Web Dilemma: Why VanillaSSG Exists
+
+Modern web publishing has drifted into unnecessary framework bloat. Shipping hundreds of kilobytes of client-side JavaScript runtimes just to display static text and articles introduces critical penalties: sluggish mobile rendering, search crawler indexation timeouts, and sudden layout shifts (CLS) that damage organic rankings and trigger Google AdSense revenue reductions. Monolithic files also saturate AI context windows, causing hallucinations, broken builds, and fragile refactoring loops for vibe coders.
+
+**VanillaSSG returns to rock-solid web fundamentals.** Every page is pre-rendered as physical static HTML with zero hydration overhead, automated Google-friendly SEO metadata, dynamic vector social preview cards, and an enforced sub-200-line modular architecture that both humans and AI agents can build upon with total confidence.
+
+---
+
 > [!TIP]
 > ### 🤖 Quick Prompt for AI Coding Agents & Vibe Coders
 > Copy and paste this single instruction block directly into Cursor, Claude, Antigravity, or ChatGPT to work on or extend this project:
