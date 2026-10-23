@@ -16,7 +16,7 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="Zero Hydration Architecture | VanillaSSG">
   <meta property="og:description" content="Learn how pre-rendering dynamic data at build time eliminates Cumulative Layout Shifts and delivers 100/100 Lighthouse performance metrics.">
-  <meta property="og:url" content="https://your-domain.com/items/item-one.html">
+  <meta property="og:url" content="https://your-domain.com/items/item-one/">
   <meta property="og:image" content="https://your-domain.com/og-thumbnail.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -31,7 +31,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <script>(function(){var s=localStorage.getItem('vanilla_app_theme'),p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(!s&&p)){document.documentElement.setAttribute('data-theme','dark');}})();</script>
   <link rel="stylesheet" href="/src/styles/main.css">
-  <link rel="canonical" href="https://your-domain.com/items/item-one.html">
+  <link rel="canonical" href="https://your-domain.com/items/item-one/">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -39,11 +39,13 @@
   "headline": "Zero Hydration Architecture",
   "description": "Learn how pre-rendering dynamic data at build time eliminates Cumulative Layout Shifts and delivers 100/100 Lighthouse performance metrics.",
   "datePublished": "2026-01-15",
-  "mainEntityOfPage": "https://your-domain.com/items/item-one.html",
+  "mainEntityOfPage": "https://your-domain.com/items/item-one/",
   "author": {
     "@type": "Organization",
     "name": "VanillaSSG Community"
-  }
+  },
+  "wordCount": 123,
+  "timeRequired": "PT1M"
 }
 </script>
   <script type="application/ld+json">
@@ -67,7 +69,7 @@
       "@type": "ListItem",
       "position": 3,
       "name": "Zero Hydration Architecture",
-      "item": "https://your-domain.com/items/item-one.html"
+      "item": "https://your-domain.com/items/item-one/"
     }
   ]
 }
@@ -95,14 +97,21 @@
 </header>
   <main class="container">
     <article class="page-header">
-      <span class="badge" style="color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem;">Architecture</span>
+      <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.5rem;">
+        <span class="badge" style="color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem;">Architecture</span>
+        <span style="color: var(--text-secondary); font-size: 0.85rem;">&bull;</span>
+        <span style="color: var(--text-secondary); font-size: 0.85rem;">1 min read</span>
+      </div>
       <h1>Zero Hydration Architecture</h1>
       <p style="color: var(--text-secondary);">Why shipping pure HTML beats waiting for mega-bundles to hydrate.</p>
     </article>
     <div class="prose">
-      <p>Learn how pre-rendering dynamic data at build time eliminates Cumulative Layout Shifts and delivers 100/100 Lighthouse performance metrics.</p>
-      <p>This static page was generated automatically during the build step using a lightweight Node script. Search engine crawlers can index every word instantly without needing a JavaScript execution engine.</p>
-      <p><a href="/items/" class="btn btn-secondary">&larr; Back to Collection</a></p>
+      <p>Pre-rendering dynamic data at build time completely removes the need for client-side JavaScript execution during initial page load.</p>
+<h2>The Problem With Mega-Bundles</h2>
+<p>When client-side frameworks boot up, the browser must download, parse, and execute megabytes of script code before the user can interact with the page. This bottleneck triggers noticeable Cumulative Layout Shifts and degrades <a href="/items/item-two/" class="cross-ref-link" title="Explore Core Web Vitals & Performance">Core Web Vitals</a> on mobile hardware.</p>
+<h2>The Zero-Hydration Advantage</h2>
+<p>By contrast, an SSG outputs pre-compiled HTML markup straight from edge servers.<br><ul><li><strong>Instant First Contentful Paint</strong>: The browser starts rendering on the very first network chunk.</li><li><strong>Flawless Search Indexing</strong>: Googlebot and other web spiders read the complete document immediately.</li><li><strong>Zero Framework Lock-in</strong>: Codebases stay lean, modular, and maintainable over decades without endless version upgrades.</li></ul></p>
+      <p style="margin-top: 2rem;"><a href="/items/" class="btn btn-secondary">&larr; Back to Collection</a></p>
     </div>
   </main>
   <footer class="site-footer">

@@ -15,9 +15,9 @@ export function getWebSiteSchema() {
   };
 }
 
-export function getArticleSchema({ title, description, publishedDate, path }) {
+export function getArticleSchema({ title, description, publishedDate, path, wordCount, readingTimeMinutes }) {
   const fullUrl = path.startsWith('http') ? path : `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`;
-  return {
+  const schema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     'headline': title,
@@ -29,6 +29,15 @@ export function getArticleSchema({ title, description, publishedDate, path }) {
       'name': `${SITE_NAME} Community`
     }
   };
+
+  if (wordCount) {
+    schema.wordCount = wordCount;
+  }
+  if (readingTimeMinutes) {
+    schema.timeRequired = `PT${readingTimeMinutes}M`;
+  }
+
+  return schema;
 }
 
 export function getBreadcrumbSchema(items = []) {

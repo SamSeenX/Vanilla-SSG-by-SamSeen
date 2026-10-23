@@ -1,11 +1,12 @@
 /**
  * RSS 2.0 Feed Generator
- * Emits public/feed.xml for search engines, readers, and automated syndication.
+ * Ingests Markdown content and emits public/feed.xml with clean canonical article URLs.
  */
 import fs from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { SITE_URL, SITE_NAME } from './site-config.js';
+import { parseFrontmatter } from './markdown-parser.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = resolve(__dirname, '..');
@@ -16,16 +17,17 @@ const FEED_PATH = resolve(PUBLIC_DIR, 'feed.xml');
 export function generateFeed() {
   if (!fs.existsSync(CONTENT_DIR)) return;
 
-  const itemFiles = fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.json'));
-  const items = itemFiles.map(file => {
+  const files = fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md'));
+  const items = files.map(file => {
     const raw = fs.readFileSync(resolve(CONTENT_DIR, file), 'utf8');
-    return JSON.parse(raw);
+    const { data } = parseFrontmatter(raw);
+    return data;
   });
 
   const rssItems = items.map(item => `    <item>
       <title><![CDATA[${item.title}]]></title>
-      <link>${SITE_URL}/items/${item.id}.html</link>
-      <guid>${SITE_URL}/items/${item.id}.html</guid>
+      <link>${SITE_URL}/items/${item.id}/</link>
+      <guid>${SITE_URL}/items/${item.id}/</guid>
       <description><![CDATA[${item.description}]]></description>
       <pubDate>${new Date(item.publishedDate).toUTCString()}</pubDate>
     </item>`).join('\n');
@@ -48,7 +50,7 @@ ${rssItems}
   }
 
   fs.writeFileSync(FEED_PATH, xmlContent, 'utf8');
-  console.log(`[RSS Feed] Generated feed.xml with ${items.length} items.`);
+  console.log(`[RSS Feed] Generated feed.xml with ${items.length} items using clean URLs.`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

@@ -11,11 +11,17 @@ function getHtmlInputs() {
     const fullDir = resolve(__dirname, dir);
     if (!fs.existsSync(fullDir)) return;
     
-    const files = fs.readdirSync(fullDir);
-    files.forEach((file) => {
-      if (file.endsWith('.html')) {
+    const entries = fs.readdirSync(fullDir, { withFileTypes: true });
+    entries.forEach((entry) => {
+      if (entry.isFile() && entry.name.endsWith('.html')) {
+        const file = entry.name;
         const key = dir ? `${dir}_${file.replace('.html', '')}` : (file === 'index.html' ? 'main' : file.replace('.html', ''));
         inputs[key] = resolve(fullDir, file);
+      } else if (entry.isDirectory()) {
+        const subIndex = resolve(fullDir, entry.name, 'index.html');
+        if (fs.existsSync(subIndex)) {
+          inputs[`${dir}_${entry.name}`] = subIndex;
+        }
       }
     });
   });

@@ -1,10 +1,13 @@
 /**
  * Static Page & Collection Generator
- * Ingests content files from content/items/ and builds detail pages plus items/index.html.
+ * Ingests Markdown files, compiles frontmatter & HTML, renders reading metrics,
+ * and outputs clean folder routes (/items/<id>/index.html) plus flat compatibility aliases.
  */
 import fs from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { SITE_URL } from './site-config.js';
+import { parseFrontmatter, renderMarkdown, calculateReadingMetrics } from './markdown-parser.js';
 import {
   getHeaderHtml,
   getFooterHtml,
@@ -21,21 +24,27 @@ const ITEMS_DIR = resolve(ROOT_DIR, 'items');
 
 function loadItems() {
   if (!fs.existsSync(CONTENT_DIR)) return [];
-  const files = fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.json'));
+  const files = fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md'));
   return files.map(file => {
     const raw = fs.readFileSync(resolve(CONTENT_DIR, file), 'utf8');
-    return JSON.parse(raw);
+    const { data, content } = parseFrontmatter(raw);
+    const bodyHtml = renderMarkdown(content);
+    const metrics = calculateReadingMetrics(content);
+    return { ...data, bodyHtml, ...metrics };
   });
 }
 
 function generateItemPage(item) {
-  const currentPath = `/items/${item.id}.html`;
-  const headerHtml = getHeaderHtml(currentPath);
+  const canonicalPath = `/items/${item.id}/`;
+  const headerHtml = getHeaderHtml(canonicalPath);
   const footerHtml = getFooterHtml();
+  const ogImageUrl = `${SITE_URL}/og/${item.id}.svg`;
+
   const seoMetaHtml = getSeoMetaHtml({
     title: `${item.title} | VanillaSSG`,
     description: item.description,
-    path: currentPath,
+    path: canonicalPath,
+    image: ogImageUrl,
     type: 'article'
   });
 
@@ -43,13 +52,15 @@ function generateItemPage(item) {
     title: item.title,
     description: item.description,
     publishedDate: item.publishedDate,
-    path: currentPath
+    path: canonicalPath,
+    wordCount: item.wordCount,
+    readingTimeMinutes: item.readingTimeMinutes
   });
 
   const breadcrumbsSchema = getBreadcrumbSchema([
     { name: 'Home', url: '/' },
     { name: 'Items', url: '/items/' },
-    { name: item.title, url: currentPath }
+    { name: item.title, url: canonicalPath }
   ]);
 
   return `<!DOCTYPE html>
@@ -69,14 +80,17 @@ ${seoMetaHtml}
   ${headerHtml}
   <main class="container">
     <article class="page-header">
-      <span class="badge" style="color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem;">${item.category}</span>
+      <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.5rem;">
+        <span class="badge" style="color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem;">${item.category}</span>
+        <span style="color: var(--text-secondary); font-size: 0.85rem;">&bull;</span>
+        <span style="color: var(--text-secondary); font-size: 0.85rem;">${item.readingTimeLabel}</span>
+      </div>
       <h1>${item.title}</h1>
       <p style="color: var(--text-secondary);">${item.tagline}</p>
     </article>
     <div class="prose">
-      <p>${item.description}</p>
-      <p>This static page was generated automatically during the build step using a lightweight Node script. Search engine crawlers can index every word instantly without needing a JavaScript execution engine.</p>
-      <p><a href="/items/" class="btn btn-secondary">&larr; Back to Collection</a></p>
+      ${item.bodyHtml}
+      <p style="margin-top: 2rem;"><a href="/items/" class="btn btn-secondary">&larr; Back to Collection</a></p>
     </div>
   </main>
   ${footerHtml}
@@ -102,10 +116,13 @@ function generateArchivePage(items) {
   ]);
 
   const cardsHtml = items.map(item => `      <div class="card">
-        <span class="badge" style="color: var(--accent); font-weight: 600; font-size: 0.8rem;">${item.category}</span>
-        <h3 style="margin-top: 0.5rem;"><a href="/items/${item.id}.html">${item.title}</a></h3>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <span class="badge" style="color: var(--accent); font-weight: 600; font-size: 0.8rem;">${item.category}</span>
+          <span style="color: var(--text-secondary); font-size: 0.75rem;">${item.readingTimeLabel}</span>
+        </div>
+        <h3><a href="/items/${item.id}/">${item.title}</a></h3>
         <p>${item.tagline}</p>
-        <a href="/items/${item.id}.html" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">Read Guide &rarr;</a>
+        <a href="/items/${item.id}/" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">Read Guide &rarr;</a>
       </div>`).join('\n');
 
   return `<!DOCTYPE html>
@@ -144,14 +161,23 @@ export function generatePages() {
 
   const items = loadItems();
   items.forEach(item => {
-    const filePath = resolve(ITEMS_DIR, `${item.id}.html`);
-    fs.writeFileSync(filePath, generateItemPage(item), 'utf8');
+    const html = generateItemPage(item);
+
+    // Clean pretty directory route: /items/<id>/index.html
+    const itemDir = resolve(ITEMS_DIR, item.id);
+    if (!fs.existsSync(itemDir)) {
+      fs.mkdirSync(itemDir, { recursive: true });
+    }
+    fs.writeFileSync(resolve(itemDir, 'index.html'), html, 'utf8');
+
+    // Compatibility flat route: /items/<id>.html
+    fs.writeFileSync(resolve(ITEMS_DIR, `${item.id}.html`), html, 'utf8');
   });
 
   const archivePath = resolve(ITEMS_DIR, 'index.html');
   fs.writeFileSync(archivePath, generateArchivePage(items), 'utf8');
 
-  console.log(`[Pages Generator] Built ${items.length} item pages and items/index.html.`);
+  console.log(`[Pages Generator] Compiled ${items.length} markdown items to pretty routes and flat aliases.`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

@@ -1,7 +1,7 @@
 /**
  * Automated SEO & OpenGraph Metadata Synchronizer
  * Injects clean OpenGraph, Twitter card, robots directives, and theme-color meta tags
- * while aggressively cleaning prior comment headers and preventing markup duplication.
+ * while preserving noindex directives on error pages and handling subdirectory paths.
  */
 import fs from 'fs';
 import path from 'path';
@@ -12,30 +12,34 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
 
-const DIRS_TO_SCAN = ['', 'items'];
+function getHtmlFiles(dir = '') {
+  const fullPath = path.join(ROOT_DIR, dir);
+  if (!fs.existsSync(fullPath)) return [];
+  const entries = fs.readdirSync(fullPath, { withFileTypes: true });
+  let files = [];
 
-function getHtmlFiles() {
-  const files = [];
-  DIRS_TO_SCAN.forEach(dir => {
-    const fullPath = path.join(ROOT_DIR, dir);
-    if (!fs.existsSync(fullPath)) return;
-    const entries = fs.readdirSync(fullPath, { withFileTypes: true });
-    entries.forEach(entry => {
-      if (entry.isFile() && entry.name.endsWith('.html')) {
-        files.push(path.join(dir, entry.name));
-      }
-    });
+  entries.forEach(entry => {
+    const rel = dir ? path.join(dir, entry.name) : entry.name;
+    if (entry.isFile() && entry.name.endsWith('.html')) {
+      files.push(rel);
+    } else if (entry.isDirectory() && entry.name !== 'node_modules' && entry.name !== 'dist' && entry.name !== 'public' && entry.name !== 'src') {
+      files = files.concat(getHtmlFiles(rel));
+    }
   });
+
   return files;
 }
 
-function generateMetaBlock(title, desc, canonicalUrl, isWebsite) {
+function generateMetaBlock(title, desc, canonicalUrl, isWebsite, is404) {
   const cleanTitle = (title || SITE_NAME).replace(/"/g, '&quot;');
   const cleanDesc = (desc || 'High-performance static site architecture with vanilla JavaScript.').replace(/"/g, '&quot;');
   const ogType = isWebsite ? 'website' : 'article';
+  const robotsDirective = is404
+    ? '<meta name="robots" content="noindex, nofollow">'
+    : '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">';
 
   return `  <!-- Search Engine Directives -->
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  ${robotsDirective}
   <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 
@@ -62,6 +66,7 @@ function generateMetaBlock(title, desc, canonicalUrl, isWebsite) {
 function processHtmlFile(relPath) {
   const fullPath = path.join(ROOT_DIR, relPath);
   let content = fs.readFileSync(fullPath, 'utf8');
+  const is404 = relPath === '404.html';
 
   const titleMatch = content.match(/<title>([\s\S]*?)<\/title>/i);
   const title = titleMatch ? titleMatch[1].trim() : SITE_NAME;
@@ -73,11 +78,17 @@ function processHtmlFile(relPath) {
   let canonicalUrl = canonMatch ? canonMatch[1].trim() : '';
   if (!canonicalUrl) {
     const normPath = relPath.replace(/\\/g, '/');
-    canonicalUrl = normPath === 'index.html' ? `${SITE_URL}/` : `${SITE_URL}/${normPath}`;
+    if (normPath === 'index.html') {
+      canonicalUrl = `${SITE_URL}/`;
+    } else if (normPath.endsWith('/index.html')) {
+      canonicalUrl = `${SITE_URL}/${normPath.replace(/index\.html$/, '')}`;
+    } else {
+      canonicalUrl = `${SITE_URL}/${normPath}`;
+    }
   }
 
-  const isWebsite = relPath === 'index.html' || relPath === 'items/index.html' || relPath.endsWith('index.html');
-  const metaBlock = generateMetaBlock(title, desc, canonicalUrl, isWebsite);
+  const isWebsite = relPath === 'index.html' || relPath.endsWith('index.html');
+  const metaBlock = generateMetaBlock(title, desc, canonicalUrl, isWebsite, is404);
 
   // Strip existing comments related to SEO directives to eliminate accumulation
   content = content.replace(/\s*<!--\s*(?:Search Engine|OpenGraph|Twitter|Canonical)[^>]*-->/gi, '');
@@ -92,7 +103,6 @@ function processHtmlFile(relPath) {
     content = content.replace('<link rel="stylesheet"', `${metaBlock}\n  <link rel="stylesheet"`);
   }
 
-  // Ensure clean indentation and collapse multiple blank lines inside head
   content = content.replace(/<head>([\s\S]*?)<\/head>/i, (m, headInner) => {
     const cleanInner = headInner.replace(/\n{3,}/g, '\n\n');
     return `<head>${cleanInner}</head>`;

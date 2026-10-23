@@ -5,25 +5,25 @@
     <link>https://your-domain.com</link>
     <description>Latest content and architecture updates from VanillaSSG.</description>
     <atom:link href="https://your-domain.com/feed.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 23 Oct 2026 04:01:13 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 23 Oct 2026 04:15:49 GMT</lastBuildDate>
     <item>
       <title><![CDATA[Zero Hydration Architecture]]></title>
-      <link>https://your-domain.com/items/item-one.html</link>
-      <guid>https://your-domain.com/items/item-one.html</guid>
+      <link>https://your-domain.com/items/item-one/</link>
+      <guid>https://your-domain.com/items/item-one/</guid>
       <description><![CDATA[Learn how pre-rendering dynamic data at build time eliminates Cumulative Layout Shifts and delivers 100/100 Lighthouse performance metrics.]]></description>
       <pubDate>Thu, 15 Jan 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[The Sub-200-Line Codebase Rule]]></title>
-      <link>https://your-domain.com/items/item-three.html</link>
-      <guid>https://your-domain.com/items/item-three.html</guid>
+      <link>https://your-domain.com/items/item-three/</link>
+      <guid>https://your-domain.com/items/item-three/</guid>
       <description><![CDATA[Why strict file size limits prevent spaghetti dependencies and maintain effortless refactoring throughout the entire software lifecycle.]]></description>
       <pubDate>Sun, 01 Mar 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Google AdSense & SEO Optimization]]></title>
-      <link>https://your-domain.com/items/item-two.html</link>
-      <guid>https://your-domain.com/items/item-two.html</guid>
+      <link>https://your-domain.com/items/item-two/</link>
+      <guid>https://your-domain.com/items/item-two/</guid>
       <description><![CDATA[A deep dive into static HTML crawling benefits, semantic landmark tags, and explicit dimensions to safeguard your AdSense revenue and Core Web Vitals.]]></description>
       <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
     </item>
