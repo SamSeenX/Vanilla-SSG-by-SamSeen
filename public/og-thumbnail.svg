@@ -59,6 +59,6 @@
 
   <!-- Feature Points -->
   <text x="400" y="665" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="500" fill="#64748b" letter-spacing="1">
-    Pure HTML &bull; Sub-200 Lines &bull; $0/mo Cloudflare Edge
+    Pure HTML • Sub-200 Lines • $0/mo Cloudflare Edge
   </text>
 </svg>

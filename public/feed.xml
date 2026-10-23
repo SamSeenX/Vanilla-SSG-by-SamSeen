@@ -5,7 +5,7 @@
     <link>https://ssg.samseen.dev</link>
     <description>Latest content and architecture updates from VanillaSSG.</description>
     <atom:link href="https://ssg.samseen.dev/feed.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 23 Oct 2026 05:21:36 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 23 Oct 2026 07:48:07 GMT</lastBuildDate>
     <item>
       <title><![CDATA[Zero Hydration Architecture]]></title>
       <link>https://ssg.samseen.dev/items/item-one/</link>
