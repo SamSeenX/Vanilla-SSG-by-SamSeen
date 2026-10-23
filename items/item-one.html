@@ -82,16 +82,22 @@
       <span class="logo-icon">⚡</span>
       <span class="logo-text">VanillaSSG</span>
     </a>
-    <nav class="site-nav" aria-label="Main Navigation">
+    <nav id="site-nav" class="site-nav" aria-label="Main Navigation">
       <ul class="nav-list">
         <li><a href="/" class="nav-link">Home</a></li>
         <li><a href="/items/" class="nav-link active" aria-current="page">Items</a></li>
         <li><a href="/about.html" class="nav-link">About</a></li>
         <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        <li><a href="https://github.com/SamSeenX/Vanilla-SSG-by-SamSeen" class="nav-link" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
       </ul>
     </nav>
     <div class="header-actions">
       <button id="theme-toggle-btn" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </div>
 </header>
@@ -108,7 +114,7 @@
     <div class="prose">
       <p>Pre-rendering dynamic data at build time completely removes the need for client-side JavaScript execution during initial page load.</p>
 <h2>The Problem With Mega-Bundles</h2>
-<p>When client-side frameworks boot up, the browser must download, parse, and execute megabytes of script code before the user can interact with the page. This bottleneck triggers noticeable Cumulative Layout Shifts and degrades <a href="/items/item-two/" class="cross-ref-link" title="Explore Core Web Vitals & Performance">Core Web Vitals</a> on mobile hardware.</p>
+<p>When client-side frameworks boot up, the browser must download, parse, and execute megabytes of script code before the user can interact with the page. This bottleneck triggers noticeable Cumulative Layout Shifts and degrades Core Web Vitals on mobile hardware.</p>
 <h2>The Zero-Hydration Advantage</h2>
 <p>By contrast, an SSG outputs pre-compiled HTML markup straight from edge servers.<br><ul><li><strong>Instant First Contentful Paint</strong>: The browser starts rendering on the very first network chunk.</li><li><strong>Flawless Search Indexing</strong>: Googlebot and other web spiders read the complete document immediately.</li><li><strong>Zero Framework Lock-in</strong>: Codebases stay lean, modular, and maintainable over decades without endless version upgrades.</li></ul></p>
       <p style="margin-top: 2rem;"><a href="/items/" class="btn btn-secondary">&larr; Back to Collection</a></p>

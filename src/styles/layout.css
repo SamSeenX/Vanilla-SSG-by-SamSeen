@@ -1,4 +1,4 @@
-/* Layout & Navigation Styling */
+/* Layout Landmarks & Container Styling */
 
 .container {
   width: 100%;
@@ -7,7 +7,7 @@
   padding: 0 1.5rem;
 }
 
-/* Site Header */
+/* Site Header Landmark */
 .site-header {
   height: var(--header-height);
   background-color: var(--bg-surface);
@@ -39,35 +39,7 @@
   color: var(--text-primary);
 }
 
-.nav-list {
-  display: flex;
-  list-style: none;
-  gap: 1.5rem;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: var(--text-secondary);
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: color var(--transition-fast);
-}
-
-.nav-link:hover,
-.nav-link.active {
-  color: var(--accent);
-}
-
-.theme-toggle {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  padding: 0.4rem 0.6rem;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-/* Site Footer */
+/* Site Footer Landmark */
 .site-footer {
   background-color: var(--bg-secondary);
   border-top: 1px solid var(--border-color);
@@ -123,4 +95,11 @@
   text-align: center;
   font-size: 0.85rem;
   color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .footer-nav {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 }

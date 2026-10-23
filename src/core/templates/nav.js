@@ -7,20 +7,23 @@ export const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Items', href: '/items/' },
   { label: 'About', href: '/about.html' },
-  { label: 'Contact', href: '/contact.html' }
+  { label: 'Contact', href: '/contact.html' },
+  { label: 'GitHub ↗', href: 'https://github.com/SamSeenX/Vanilla-SSG-by-SamSeen' }
 ];
 
 export function getNavHtml(currentPath = '/') {
   const navLinks = NAV_ITEMS.map((item) => {
     const isRoot = item.href === '/';
+    const isExternal = item.href.startsWith('http');
     const isActive = isRoot
       ? (currentPath === '/' || currentPath === '/index.html')
-      : currentPath.startsWith(item.href);
-    const activeClass = isActive ? ' class="nav-link active" aria-current="page"' : ' class="nav-link"';
-    return `<li><a href="${item.href}"${activeClass}>${item.label}</a></li>`;
+      : (!isExternal && currentPath.startsWith(item.href));
+    const activeAttr = isActive ? ' class="nav-link active" aria-current="page"' : ' class="nav-link"';
+    const externalAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+    return `<li><a href="${item.href}"${activeAttr}${externalAttr}>${item.label}</a></li>`;
   }).join('\n        ');
 
-  return `<nav class="site-nav" aria-label="Main Navigation">
+  return `<nav id="site-nav" class="site-nav" aria-label="Main Navigation">
       <ul class="nav-list">
         ${navLinks}
       </ul>

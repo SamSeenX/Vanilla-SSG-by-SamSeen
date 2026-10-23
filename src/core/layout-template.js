@@ -9,6 +9,7 @@ export { getFooterHtml } from './templates/footer.js';
 export { getSeoMetaHtml } from './templates/seo.js';
 export {
   getWebSiteSchema,
+  getSoftwareApplicationSchema,
   getArticleSchema,
   getBreadcrumbSchema,
   renderSchemaTag
