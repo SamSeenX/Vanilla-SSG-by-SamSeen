@@ -1,6 +1,6 @@
 /**
  * SEO & OpenGraph Sub-Template
- * Standardizes robots directives, theme colors, canonical links, and social cards.
+ * Standardizes robots directives, theme colors, canonical links, and side-by-side social cards.
  */
 
 import { SITE_URL, SITE_NAME, OG_IMAGE_URL } from '../../../scripts/site-config.js';
@@ -30,12 +30,12 @@ export function getSeoMetaHtml({
   <meta property="og:description" content="${cleanDesc}">
   <meta property="og:url" content="${fullUrl}">
   <meta property="og:image" content="${image}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:alt" content="${SITE_NAME} Emblem">
 
-  <!-- Twitter Card -->
+  <!-- Twitter Compact Card (Side-by-Side Thumbnail) -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${cleanTitle}">
   <meta name="twitter:description" content="${cleanDesc}">

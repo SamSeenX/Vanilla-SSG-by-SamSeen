@@ -2,28 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>VanillaSSG Feed</title>
-    <link>https://your-domain.com</link>
+    <link>https://ssg.samseen.dev</link>
     <description>Latest content and architecture updates from VanillaSSG.</description>
-    <atom:link href="https://your-domain.com/feed.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 23 Oct 2026 04:52:42 GMT</lastBuildDate>
+    <atom:link href="https://ssg.samseen.dev/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Oct 2026 05:12:12 GMT</lastBuildDate>
     <item>
       <title><![CDATA[Zero Hydration Architecture]]></title>
-      <link>https://your-domain.com/items/item-one/</link>
-      <guid>https://your-domain.com/items/item-one/</guid>
+      <link>https://ssg.samseen.dev/items/item-one/</link>
+      <guid>https://ssg.samseen.dev/items/item-one/</guid>
       <description><![CDATA[Learn how pre-rendering dynamic data at build time eliminates Cumulative Layout Shifts and delivers 100/100 Lighthouse performance metrics.]]></description>
       <pubDate>Thu, 15 Jan 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[The Sub-200-Line Codebase Rule]]></title>
-      <link>https://your-domain.com/items/item-three/</link>
-      <guid>https://your-domain.com/items/item-three/</guid>
+      <link>https://ssg.samseen.dev/items/item-three/</link>
+      <guid>https://ssg.samseen.dev/items/item-three/</guid>
       <description><![CDATA[Why strict file size limits prevent spaghetti dependencies and maintain effortless refactoring throughout the entire software lifecycle.]]></description>
       <pubDate>Sun, 01 Mar 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title><![CDATA[Google AdSense & SEO Optimization]]></title>
-      <link>https://your-domain.com/items/item-two/</link>
-      <guid>https://your-domain.com/items/item-two/</guid>
+      <link>https://ssg.samseen.dev/items/item-two/</link>
+      <guid>https://ssg.samseen.dev/items/item-two/</guid>
       <description><![CDATA[A deep dive into static HTML crawling benefits, semantic landmark tags, and explicit dimensions to safeguard your AdSense revenue and Core Web Vitals.]]></description>
       <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
     </item>

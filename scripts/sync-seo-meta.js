@@ -1,7 +1,7 @@
 /**
  * Automated SEO & OpenGraph Metadata Synchronizer
- * Injects clean OpenGraph, Twitter card, robots directives, and theme-color meta tags
- * while preserving noindex directives on error pages and handling subdirectory paths.
+ * Injects clean OpenGraph, Twitter compact cards (800x800), robots directives, and theme colors
+ * while preserving noindex directives on error pages and propagating SITE_URL.
  */
 import fs from 'fs';
 import path from 'path';
@@ -51,12 +51,12 @@ function generateMetaBlock(title, desc, canonicalUrl, isWebsite, is404) {
   <meta property="og:description" content="${cleanDesc}">
   <meta property="og:url" content="${canonicalUrl}">
   <meta property="og:image" content="${OG_IMAGE_URL}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:alt" content="${SITE_NAME} Emblem">
 
-  <!-- Twitter Card -->
+  <!-- Twitter Compact Card (Side-by-Side Thumbnail) -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${cleanTitle}">
   <meta name="twitter:description" content="${cleanDesc}">
@@ -74,17 +74,14 @@ function processHtmlFile(relPath) {
   const descMatch = content.match(/<meta\s+name="description"\s+content="([\s\S]*?)"/i);
   const desc = descMatch ? descMatch[1].trim() : '';
 
-  const canonMatch = content.match(/<link\s+rel="canonical"\s+href="([\s\S]*?)"/i);
-  let canonicalUrl = canonMatch ? canonMatch[1].trim() : '';
-  if (!canonicalUrl) {
-    const normPath = relPath.replace(/\\/g, '/');
-    if (normPath === 'index.html') {
-      canonicalUrl = `${SITE_URL}/`;
-    } else if (normPath.endsWith('/index.html')) {
-      canonicalUrl = `${SITE_URL}/${normPath.replace(/index\.html$/, '')}`;
-    } else {
-      canonicalUrl = `${SITE_URL}/${normPath}`;
-    }
+  const normPath = relPath.replace(/\\/g, '/');
+  let canonicalUrl = '';
+  if (normPath === 'index.html') {
+    canonicalUrl = `${SITE_URL}/`;
+  } else if (normPath.endsWith('/index.html')) {
+    canonicalUrl = `${SITE_URL}/${normPath.replace(/index\.html$/, '')}`;
+  } else {
+    canonicalUrl = `${SITE_URL}/${normPath}`;
   }
 
   const isWebsite = relPath === 'index.html' || relPath.endsWith('index.html');
@@ -95,6 +92,12 @@ function processHtmlFile(relPath) {
 
   // Strip existing og, twitter, robots, or theme-color meta tags
   content = content.replace(/\s*<meta\s+(?:property="og:[^"]*"|name="twitter:[^"]*"|name="robots"|name="theme-color")[^>]*>/gi, '');
+
+  // Update canonical tag to use active SITE_URL
+  content = content.replace(/<link\s+rel="canonical"\s+href="[^"]*"/gi, `<link rel="canonical" href="${canonicalUrl}"`);
+
+  // Update any stale domain in structured data scripts
+  content = content.replace(/https:\/\/your-domain\.com/g, SITE_URL);
 
   // Insert cleanly right before the favicon or stylesheet link
   if (content.includes('<link rel="icon"')) {
