@@ -19,9 +19,9 @@
 
 ### The Modern Web Dilemma: Why VanillaSSG Exists
 
-Modern web publishing has drifted into unnecessary framework bloat. Shipping hundreds of kilobytes of client-side JavaScript runtimes just to display static text and articles introduces critical penalties: sluggish mobile rendering, search crawler indexation timeouts, and sudden layout shifts (CLS) that damage organic rankings and trigger Google AdSense revenue reductions. Monolithic files also saturate AI context windows, causing hallucinations, broken builds, and fragile refactoring loops for vibe coders.
+Modern web publishing has drifted into unnecessary framework bloat. Shipping hundreds of kilobytes of client-side JavaScript runtimes just to display static text and articles introduces critical penalties: sluggish mobile rendering, search crawler indexation timeouts, and sudden layout shifts (CLS) that damage organic rankings and trigger Google AdSense revenue reductions. Monolithic dynamic apps also force creators into paying recurring $20 to $100+ monthly server hosting fees, VPS instances, and database maintenance costs for simple content sites. Monolithic codebases also saturate AI context windows, causing hallucinations, broken builds, and fragile refactoring loops for vibe coders.
 
-**VanillaSSG returns to rock-solid web fundamentals.** Every page is pre-rendered as physical static HTML with zero hydration overhead, automated Google-friendly SEO metadata, dynamic vector social preview cards, and an enforced sub-200-line modular architecture that both humans and AI agents can build upon with total confidence.
+**VanillaSSG returns to rock-solid web fundamentals.** Every page is pre-rendered as physical static HTML with zero hydration overhead, automated Google-friendly SEO metadata, dynamic vector social preview cards, and an enforced sub-200-line modular architecture that both humans and AI agents can build upon with total confidence. Best of all, pure static distribution allows you to host your entire website with zero monthly hosting fees on global edge platforms like Cloudflare Pages and GitHub Pages.
 
 ---
 
@@ -63,6 +63,7 @@ Why choose VanillaSSG over heavy JavaScript frameworks for content sites:
 | **Lighthouse Score** | **100 / 100** | 80 to 95 | 95 to 100 | **100 / 100** |
 | **Hydration Delay** | **Instant (0 ms)** | 200 to 600 ms | Partial | **Instant (0 ms)** |
 | **Google AdSense CLS** | **0.00 (Flawless)** | Variable / Risky | Low | Low |
+| **Monthly Hosting Cost** | **$0 / month (Free Edge)** | $20 to $100+/mo (VPS/DB) | Low to Free | **$0 / month** |
 | **Tooling & Language** | **Pure JS + Vite** | React/Vue Runtime | Custom `.astro` | Go Templates |
 | **File Limit Guard** | **Sub-200 Lines** | Monolith Friendly | Monolith Friendly | Monolith Friendly |
 
@@ -234,11 +235,11 @@ Compiles markdown, builds vector OG cards, outputs sitemap, syncs layout, and em
 
 ---
 
-## ☁️ Deployment
+## ☁️ Zero-Cost Global Edge Deployment ($0/month)
 
-The generated `dist/` directory is 100% pure static HTML, CSS, and SVG. Deploy anywhere with zero server runtime:
+Because the generated `dist/` directory is 100% pure static HTML, CSS, and SVG, you never need to pay for backend servers, VPS instances, or container compute runtimes. Deploy worldwide on free edge CDN networks with unlimited bandwidth and automatic SSL:
 
-* **Cloudflare Pages**: Set build command to `npm run build` and output directory to `dist`.
-* **Vercel**: Set framework preset to `Vite` and output directory to `dist`.
+* **Cloudflare Pages (Recommended)**: Set build command to `npm run build` and output directory to `dist`. Enjoy unlimited bandwidth and global CDN edge routing with zero monthly fees.
+* **Vercel**: Set framework preset to `Vite` and output directory to `dist` for instantaneous static edge deploys.
 * **Netlify**: Set publish directory to `dist` and build command to `npm run build`.
-* **GitHub Pages**: Deploy directly from the `dist` folder via standard GitHub Actions.
+* **GitHub Pages**: Deploy directly from the `dist` folder or automated GitHub Actions with zero hosting costs.
