@@ -1,6 +1,6 @@
 /**
  * Automated SEO & OpenGraph Metadata Synchronizer
- * Injects clean OpenGraph, Twitter compact cards (400x400), robots directives, and theme colors
+ * Injects clean OpenGraph, Twitter compact cards (256x256), robots directives, and theme colors
  * while preserving noindex directives on error pages and propagating SITE_URL.
  */
 import fs from 'fs';
@@ -51,8 +51,8 @@ function generateMetaBlock(title, desc, canonicalUrl, isWebsite, is404) {
   <meta property="og:description" content="${cleanDesc}">
   <meta property="og:url" content="${canonicalUrl}">
   <meta property="og:image" content="${OG_IMAGE_URL}">
-  <meta property="og:image:width" content="400">
-  <meta property="og:image:height" content="400">
+  <meta property="og:image:width" content="256">
+  <meta property="og:image:height" content="256">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:alt" content="${SITE_NAME} Emblem">
 
