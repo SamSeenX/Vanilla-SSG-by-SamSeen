@@ -1,6 +1,6 @@
 {
   "name": "vanilla-ssg-by-samseen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "Production-ready Vanilla JS + Vite Static Site Generator starter kit",
   "license": "MIT",
