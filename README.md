@@ -141,6 +141,13 @@ Pre-rendering dynamic data at build time eliminates Cumulative Layout Shifts.
 * `scripts/cross-link-engine.js` injects automatic internal links from `scripts/cross-reference-dict.js`.
 * Skips headings, code blocks, and existing links to protect HTML integrity.
 
+### ⚡ 7. Advanced Vite Production Minification
+* **HTML Minification**: Automatically collapses redundant whitespace and strips HTML comments in production without breaking code blocks or JSON-LD scripts.
+* **Modern ES2022 Target**: Prevents injection of legacy polyfill overhead for smaller, faster ES module execution.
+* **Console & Debugger Stripping**: Automatically drops all `console.log` and `debugger` statements via `esbuild` during production builds.
+* **Zero-Polyfill Module Preloading**: Strips unnecessary modulepreload polyfills on modern browsers.
+* **Immutable Asset Hashing**: Emits assets with content hashes (`assets/[name]-[hash].[ext]`) for 1-year browser cache optimization on edge CDNs.
+
 ---
 
 ## 📁 Project Structure

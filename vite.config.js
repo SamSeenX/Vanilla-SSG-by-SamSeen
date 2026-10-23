@@ -29,7 +29,25 @@ function getHtmlInputs() {
   return inputs;
 }
 
-function layoutConsistencyPlugin() {
+function minifyHtml(html) {
+  const preserved = [];
+  let processed = html.replace(/<(pre|code|script\b[^>]*)>([\s\S]*?)<\/\1>/gi, (match) => {
+    preserved.push(match);
+    return `__PRESERVED_${preserved.length - 1}__`;
+  });
+
+  processed = processed.replace(/<!--[\s\S]*?-->/g, '');
+  processed = processed.replace(/>\s+</g, '><');
+  processed = processed.replace(/[ \t\r\n]+/g, ' ');
+
+  preserved.forEach((block, idx) => {
+    processed = processed.replace(`__PRESERVED_${idx}__`, block);
+  });
+
+  return processed.trim();
+}
+
+function layoutConsistencyPlugin(isProd) {
   return {
     name: 'layout-consistency-plugin',
     transformIndexHtml(html, ctx) {
@@ -55,16 +73,37 @@ function layoutConsistencyPlugin() {
       if (footerRegex.test(result)) {
         result = result.replace(footerRegex, footer);
       }
-      return result;
+
+      return isProd ? minifyHtml(result) : result;
     }
   };
 }
 
-export default defineConfig({
-  plugins: [layoutConsistencyPlugin()],
-  build: {
-    rollupOptions: {
-      input: getHtmlInputs()
+export default defineConfig(({ command, mode }) => {
+  const isProd = command === 'build' || mode === 'production';
+
+  return {
+    plugins: [layoutConsistencyPlugin(isProd)],
+    esbuild: {
+      drop: isProd ? ['console', 'debugger'] : []
+    },
+    build: {
+      target: 'es2022',
+      minify: 'esbuild',
+      cssMinify: true,
+      cssCodeSplit: true,
+      assetsInlineLimit: 4096,
+      modulePreload: {
+        polyfill: false
+      },
+      rollupOptions: {
+        input: getHtmlInputs(),
+        output: {
+          entryFileNames: 'assets/[name]-[hash].js',
+          chunkFileNames: 'assets/[name]-[hash].js',
+          assetFileNames: 'assets/[name]-[hash].[ext]'
+        }
+      }
     }
-  }
+  };
 });
