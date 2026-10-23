@@ -74,8 +74,11 @@
 
   <main class="container">
     <section class="hero">
-      <span class="badge" style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em;">Vite 6 &bull; Pure Static Edge</span>
-      <h1 style="margin-top: 0.5rem;">Zero-Hydration Vanilla JS Static Site Generator</h1>
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span>STATIC EDGE SPEC &bull; VITE 6</span>
+      </div>
+      <h1>Zero-Hydration Vanilla JS Static Site Generator</h1>
       <p>Ship blazingly fast multi-page static websites straight to the edge with pure HTML, Vite, and zero client framework runtime. Host 100% free on Cloudflare Pages.</p>
       
       <div class="hero-actions">
@@ -85,68 +88,68 @@
 
       <div class="terminal-card">
         <div class="terminal-header">
-          <div class="terminal-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <span>Quick Scaffold</span>
+          <span>SCAFFOLD WORKSPACE</span>
+          <span class="terminal-prompt-tag">BASH</span>
         </div>
         <div class="terminal-body">
-          <code id="copy-cmd-text" class="terminal-code">npx degit SamSeenX/Vanilla-SSG-by-SamSeen my-site</code>
+          <div class="terminal-code"><span class="terminal-prompt-symbol">$</span><span id="copy-cmd-text">npx degit SamSeenX/Vanilla-SSG-by-SamSeen my-site</span></div>
           <button id="copy-cmd-btn" class="copy-btn" aria-label="Copy scaffold command">Copy</button>
         </div>
       </div>
     </section>
 
-    <section class="metrics-strip">
-      <div class="metric-item">
-        <div class="metric-num">0 KB</div>
-        <div class="metric-label">Client JS Runtime</div>
+    <section class="spec-ledger">
+      <div class="spec-cell">
+        <div class="spec-value">0 KB</div>
+        <div class="spec-label">Runtime Payload</div>
       </div>
-      <div class="metric-item">
-        <div class="metric-num">100/100</div>
-        <div class="metric-label"><a href="/items/item-one/" class="cross-ref-link" title="Explore Lighthouse 100/100 Metrics">Lighthouse</a> Performance</div>
+      <div class="spec-cell">
+        <div class="spec-value">100/100</div>
+        <div class="spec-label">Lighthouse Score</div>
       </div>
-      <div class="metric-item">
-        <div class="metric-num">$0/mo</div>
-        <div class="metric-label">Cloudflare Edge Hosting</div>
+      <div class="spec-cell">
+        <div class="spec-value">$0/mo</div>
+        <div class="spec-label">Edge Hosting</div>
       </div>
-      <div class="metric-item">
-        <div class="metric-num">&lt;200</div>
-        <div class="metric-label">Lines Per File Limit</div>
+      <div class="spec-cell">
+        <div class="spec-value">&lt;200</div>
+        <div class="spec-label">Lines Per File</div>
       </div>
     </section>
 
-    <section class="features-grid">
-      <div class="card">
-        <div class="card-icon">🚀</div>
+    <section class="ledger-grid">
+      <div class="ledger-item">
+        <div class="ledger-meta">01 / ARCHITECTURE</div>
         <h3>Zero Hydration Overhead</h3>
         <p>Pre-render complete HTML documents straight from edge servers. No waiting for megabytes of framework JavaScript to hydrate before users can read.</p>
       </div>
 
-      <div class="card">
-        <div class="card-icon">☁️</div>
+      <div class="ledger-item">
+        <div class="ledger-meta">02 / INFRASTRUCTURE</div>
         <h3>$0/Month Edge Hosting</h3>
         <p>Eliminate expensive VPS servers and database bills. Deploy pure static HTML to Cloudflare Pages or GitHub Pages with unlimited bandwidth.</p>
       </div>
 
-      <div class="card">
-        <div class="card-icon">📝</div>
+      <div class="ledger-item">
+        <div class="ledger-meta">03 / AUTHORING</div>
         <h3>Native Markdown Compiler</h3>
         <p>Write content in Markdown with YAML frontmatter. Builds word counts, reading times, and Google Article schemas with zero dependencies.</p>
       </div>
 
-      <div class="card">
-        <div class="card-icon">🎨</div>
+      <div class="ledger-item">
+        <div class="ledger-meta">04 / SOCIAL DISCOVERY</div>
         <h3>Dynamic Vector OG Cards</h3>
         <p>Every article automatically generates a custom 1200x630 vector SVG social preview card with branded typography and category tags.</p>
       </div>
 
-      <div class="card">
-        <div class="card-icon">🔍</div>
+      <div class="ledger-item">
+        <div class="ledger-meta">05 / CRAWL SIGNALS</div>
         <h3>Search Crawler Directives</h3>
         <p>Automated XML sitemaps using real file modification dates (mtime), dynamic robots.txt sync, RSS 2.0 feed, and 404 crawler guard.</p>
       </div>
 
-      <div class="card">
-        <div class="card-icon">📏</div>
+      <div class="ledger-item">
+        <div class="ledger-meta">06 / CODE HYGIENE</div>
         <h3>Strict Sub-200-Line Code</h3>
         <p>Modular simplicity across all scripts and styles keeps logic maintainable, auditable, and resilient to AI context saturation.</p>
       </div>

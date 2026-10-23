@@ -1,23 +1,47 @@
-/* Component Styling: Hero, Cards, Buttons, Prose, Cross-Links */
+/* Component Styling: Hero, Architectural Grid, Buttons, Prose, Cross-Links */
 
 /* Hero Section */
 .hero {
-  padding: 3.5rem 0 2rem;
+  padding: 4rem 0 2rem;
   text-align: center;
 }
 
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--accent-light);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
 .hero h1 {
-  font-size: clamp(2rem, 5vw, 3.25rem);
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  margin-bottom: 1rem;
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+  font-weight: 800;
 }
 
 .hero p {
   font-size: 1.15rem;
   color: var(--text-secondary);
-  max-width: 680px;
-  margin: 0 auto 1.5rem;
+  max-width: 640px;
+  margin: 0 auto 1.8rem;
+  line-height: 1.6;
 }
 
 .hero-actions {
@@ -25,68 +49,85 @@
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
+  margin-bottom: 2.2rem;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius-md);
-  font-weight: 600;
+  padding: 0.75rem 1.6rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.95rem;
   text-decoration: none;
-  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .btn:active {
-  transform: scale(0.98);
+  transform: translateY(1px);
 }
 
 .btn-primary {
   background-color: var(--accent);
-  color: #ffffff;
+  color: #080b10;
+  border: 1px solid var(--accent);
 }
 
 .btn-primary:hover {
   background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 
 .btn-secondary {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-surface);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
 }
 
-/* Feature Cards Grid */
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin: 2.5rem 0;
+.btn-secondary:hover {
+  border-color: var(--accent-secondary);
+  color: var(--accent-secondary);
 }
 
-.card {
-  background-color: var(--bg-surface);
+/* Continuous Hairline Ledger Grid (Replaces Generic SaaS Cards) */
+.ledger-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1px;
+  background-color: var(--border-color);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 1.75rem;
-  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  margin: 3.5rem 0;
 }
 
-.card-icon {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
+.ledger-item {
+  background-color: var(--bg-surface);
+  padding: 2rem 1.75rem;
+  position: relative;
 }
 
-.card h3 {
-  margin-bottom: 0.5rem;
+.ledger-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-secondary);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.85rem;
+}
+
+.ledger-item h3 {
   font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6rem;
 }
 
-.card p {
+.ledger-item p {
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
 }
 
 /* Content Page Layout */
@@ -116,7 +157,7 @@
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  text-decoration-color: rgba(37, 99, 235, 0.4);
+  text-decoration-color: rgba(34, 197, 94, 0.4);
 }
 
 @media (max-width: 640px) {
