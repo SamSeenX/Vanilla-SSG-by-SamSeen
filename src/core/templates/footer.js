@@ -25,7 +25,7 @@ export function getFooterHtml() {
         <ul>
           <li><a href="/privacy.html">Privacy Policy</a></li>
           <li><a href="/terms.html">Terms of Service</a></li>
-          <li><a href="/contact.html">Contact Us</a></li>
+          <li><a href="https://github.com/SamSeenX/Vanilla-SSG-by-SamSeen/issues" target="_blank" rel="noopener noreferrer">Contact Us ↗</a></li>
         </ul>
       </div>
     </nav>
