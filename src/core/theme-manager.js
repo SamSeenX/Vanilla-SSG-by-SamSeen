@@ -2,7 +2,7 @@
  * Zero-CLS Theme Manager
  * Toggles data-theme attribute on documentElement with LocalStorage sync.
  */
-class ThemeManager {
+export class ThemeManager {
   constructor() {
     this.storageKey = 'vanilla_app_theme';
     this.theme = 'light';
@@ -41,3 +41,4 @@ class ThemeManager {
 }
 
 export const themeManager = new ThemeManager();
+export default themeManager;

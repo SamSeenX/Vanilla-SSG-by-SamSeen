@@ -29,6 +29,7 @@
   <meta name="twitter:description" content="Learn how pre-rendering dynamic data at build time eliminates Cumulative Layout Shifts and delivers 100/100 Lighthouse performance metrics.">
   <meta name="twitter:image" content="https://ssg.samseen.dev/og-thumbnail.png">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script>(function(){var s=localStorage.getItem('vanilla_app_theme'),p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(!s&&p)){document.documentElement.setAttribute('data-theme','dark');}})();</script>
   <link rel="stylesheet" href="/src/styles/main.css">
   <link rel="canonical" href="https://ssg.samseen.dev/items/item-one.html">
   <script type="application/ld+json">
@@ -113,7 +114,7 @@
     <div class="prose">
       <p>Pre-rendering dynamic data at build time completely removes the need for client-side JavaScript execution during initial page load.</p>
 <h2>The Problem With Mega-Bundles</h2>
-<p>When client-side frameworks boot up, the browser must download, parse, and execute megabytes of script code before the user can interact with the page. This bottleneck triggers noticeable Cumulative Layout Shifts and degrades Core Web Vitals on mobile hardware.</p>
+<p>When client-side frameworks boot up, the browser must download, parse, and execute megabytes of script code before the user can interact with the page. This bottleneck triggers noticeable Cumulative Layout Shifts and degrades <a href="/items/item-two/" class="cross-ref-link" title="Explore Core Web Vitals & Performance">Core Web Vitals</a> on mobile hardware.</p>
 <h2>The Zero-Hydration Advantage</h2>
 <p>By contrast, an SSG outputs pre-compiled HTML markup straight from edge servers.<br><ul><li><strong>Instant First Contentful Paint</strong>: The browser starts rendering on the very first network chunk.</li><li><strong>Flawless Search Indexing</strong>: Googlebot and other web spiders read the complete document immediately.</li><li><strong>Zero Framework Lock-in</strong>: Codebases stay lean, modular, and maintainable over decades without endless version upgrades.</li></ul></p>
       <p style="margin-top: 2rem;"><a href="/items/" class="btn btn-secondary">&larr; Back to Collection</a></p>

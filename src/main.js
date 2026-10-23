@@ -1,4 +1,4 @@
-import { ThemeManager } from './core/theme-manager.js';
+import { themeManager } from './core/theme-manager.js';
 
 function initMobileMenu() {
   const menuBtn = document.getElementById('mobile-menu-btn');
@@ -38,7 +38,6 @@ function initCopyButtons() {
         copyBtn.style.color = '';
       }, 2000);
     } catch {
-      // Fallback
       copyBtn.innerText = 'Copied!';
       setTimeout(() => { copyBtn.innerText = 'Copy'; }, 2000);
     }
@@ -46,10 +45,7 @@ function initCopyButtons() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const themeToggleBtn = document.getElementById('theme-toggle-btn');
-  if (themeToggleBtn) {
-    ThemeManager.init(themeToggleBtn);
-  }
+  themeManager.init();
   initMobileMenu();
   initCopyButtons();
 });
