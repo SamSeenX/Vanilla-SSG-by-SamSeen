@@ -15,6 +15,7 @@
     "crosslink": "node scripts/run-cross-linking.js",
     "sync:layout": "node scripts/sync-layout.js",
     "sync:seo": "node scripts/sync-seo-meta.js",
+    "clean:demo": "node scripts/clean-demo.js",
     "preview": "vite preview"
   },
   "devDependencies": {

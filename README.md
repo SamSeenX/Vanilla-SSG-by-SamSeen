@@ -211,6 +211,31 @@ vanilla-ssg-template/
 
 ---
 
+## 🧹 Using as a Template: Reset & Customization
+
+When you create a new repository from this starter, you have two quick options to clear out our demo articles and configure your own brand:
+
+### Option A: One-Command Automated Reset (Recommended)
+Run this command in your cloned project:
+```bash
+npm run clean:demo
+```
+This script automatically:
+* Replaces the 3 sample articles in `content/items/` with a clean `hello-world.md` starter.
+* Cleans out generated demo directories in `items/` and old SVG cards in `public/og/`.
+* Resets `scripts/site-config.js` to generic placeholders (`your-domain.com`).
+* Clears the sample keyword dictionary in `scripts/cross-reference-dict.js`.
+* Rebuilds all sitemaps, RSS feeds, and pages so your new site runs immediately.
+
+### Option B: Manual Customization Checklist
+If you prefer configuring by hand, review these four files:
+1. **`scripts/site-config.js`**: Update `SITE_URL`, `SITE_DOMAIN`, and `SITE_NAME`.
+2. **`content/items/`**: Replace the sample markdown files with your own articles.
+3. **`src/core/templates/nav.js`**: Update navigation items to point to your new pages.
+4. **`public/favicon.svg` & `public/og-thumbnail.png`**: Swap with your brand logos.
+
+---
+
 ## 🚀 Developer Walkthrough
 
 ### 1. Configure Branding
