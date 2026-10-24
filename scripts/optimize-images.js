@@ -19,6 +19,7 @@ const MANIFEST_PATH = path.join(ROOT_DIR, 'src', 'core', 'image-manifest.json');
 
 const TARGETS = [
   { dir: '480w', width: 480, quality: { avif: 70, webp: 80, jpeg: 80 } },
+  { dir: '768w', width: 768, quality: { avif: 72, webp: 80, jpeg: 80 } },
   { dir: '1200w', width: 1200, quality: { avif: 75, webp: 82, jpeg: 82 } }
 ];
 
