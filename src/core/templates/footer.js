@@ -18,6 +18,7 @@ export function getFooterHtml() {
           <li><a href="/">Home</a></li>
           <li><a href="/items/">Collection Demo</a></li>
           <li><a href="/about.html">About</a></li>
+          <li><a href="/changelog.html">Changelog</a></li>
         </ul>
       </div>
       <div class="footer-col">

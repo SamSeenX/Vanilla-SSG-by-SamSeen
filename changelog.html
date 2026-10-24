@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Release Changelog | VanillaSSG</title>
+  <meta name="description" content="Complete version release history and architectural changelog for VanillaSSG.">
+  <link rel="canonical" href="https://ssg.samseen.dev/changelog.html">
+    <!-- Search Engine Directives -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
+  <!-- Canonical & OpenGraph -->
+  <meta property="og:site_name" content="VanillaSSG">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Release Changelog | VanillaSSG">
+  <meta property="og:description" content="Complete version release history and architectural changelog for VanillaSSG.">
+  <meta property="og:url" content="https://ssg.samseen.dev/changelog.html">
+  <meta property="og:image" content="https://ssg.samseen.dev/og-thumbnail.png">
+  <meta property="og:image:width" content="256">
+  <meta property="og:image:height" content="256">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="VanillaSSG Emblem">
+
+  <!-- Twitter Compact Card (Side-by-Side Thumbnail) -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Release Changelog | VanillaSSG">
+  <meta name="twitter:description" content="Complete version release history and architectural changelog for VanillaSSG.">
+  <meta name="twitter:image" content="https://ssg.samseen.dev/og-thumbnail.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script>(function(){var s=localStorage.getItem('vanilla_app_theme'),p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(!s&&p)){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "VanillaSSG",
+  "url": "https://ssg.samseen.dev",
+  "description": "High performance, zero-hydration static site architecture."
+}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="header-container">
+    <a href="/" class="brand-logo" aria-label="Home">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">VanillaSSG</span>
+    </a>
+    <nav id="site-nav" class="site-nav" aria-label="Main Navigation">
+      <ul class="nav-list">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/items/" class="nav-link">Items</a></li>
+        <li><a href="/about.html" class="nav-link">About</a></li>
+        <li><a href="/changelog.html" class="nav-link active" aria-current="page">Changelog</a></li>
+        <li><a href="https://github.com/SamSeenX/Vanilla-SSG-by-SamSeen/issues" class="nav-link" target="_blank" rel="noopener noreferrer">Contact</a></li>
+        <li><a href="https://github.com/SamSeenX/Vanilla-SSG-by-SamSeen" class="nav-link" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button id="theme-toggle-btn" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main class="container">
+    <div class="page-header">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        VERSION TRACKER
+      </div>
+      <h1>Release Changelog</h1>
+      <p>Continuous evolution, performance benchmarks, and architectural updates.</p>
+    </div>
+
+    <div class="prose changelog-body">
+      <h1>Changelog</h1>
+<p>All notable changes to VanillaSSG are documented in this file.<br>The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>, and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+<p>---</p>
+<h2>[1.1.0] - 2026-10-24</h2>
+<h3>Added</h3>
+<ul><li><strong>Automated Responsive Image Pipeline</strong>: Integrated <code>sharp</code> to compile master assets from <code>src/assets/images/</code> into 6 modern variants across <code>public/images/480w/</code> and <code>public/images/1200w/</code>.</li><li><strong>Modern Format Support</strong>: Automated simultaneous AVIF and WebP generation alongside highly compressed JPEG fallbacks.</li><li><strong>Zero-CLS Layout Registry</strong>: Built <code>src/core/image-manifest.json</code> recording native dimensions and aspect ratios to prevent Cumulative Layout Shifts.</li><li><strong>Markdown Image Transformer</strong>: Updated <code>scripts/markdown-parser.js</code> to automatically convert markdown images into zero-hydration responsive <code><picture></code> tags.</li><li><strong>Picture Sub-Template</strong>: Created reusable <code>src/core/templates/picture.js</code> component for static page templates.</li><li><strong>Multi-Platform Favicons</strong>: Added pre-rendered 32x32 <code>favicon.ico</code> and 180x180 <code>apple-touch-icon.png</code> in kinetic lime and signal orange.</li><li><strong>Public Changelog</strong>: Added <code>CHANGELOG.md</code> and dedicated static <code>/changelog.html</code> showcase page.</li></ul>
+<p>---</p>
+<h2>[1.0.3] - 2026-10-23</h2>
+<h3>Changed</h3>
+<ul><li><strong>Contact Workflow</strong>: Replaced legacy contact form page with direct GitHub Issues links across all navigation menus and footers.</li><li><strong>Route Pruning</strong>: Removed <code>contact.html</code> to eliminate dead form inputs and maintenance overhead.</li><li><strong>Sitemap Sync</strong>: Updated canonical sitemap from 9 to 8 verified routes.</li></ul>
+<p>---</p>
+<h2>[1.0.2] - 2026-10-23</h2>
+<h3>Fixed</h3>
+<ul><li><strong>WhatsApp Link Previews</strong>: Constrained OpenGraph thumbnail dimensions to 256x256 under 300KB to reliably trigger compact side-by-side cards.</li><li><strong>XML Parsing Exception</strong>: Replaced invalid HTML <code>&bull;</code> entities in <code>public/og-thumbnail.svg</code> with native unicode bullets to prevent crawler parse errors.</li></ul>
+<h3>Added</h3>
+<ul><li><strong>Automated 256x256 Thumbnail Engine</strong>: Added high-density raster generation pipeline via <code>rsvg-convert</code>.</li></ul>
+<p>---</p>
+<h2>[1.0.1] - 2026-10-23</h2>
+<h3>Added</h3>
+<ul><li><strong>Architectural Spec-Sheet Theme</strong>: Complete visual overhaul featuring a technical grid aesthetic, monospaced metadata badges, and high-contrast palettes.</li><li><strong>Kinetic Color System</strong>: Introduced Kinetic Lime Green (<code>#22c55e</code>) primary and Signal Orange (<code>#f97316</code>) accent tokens.</li><li><strong>Clean Demo Reset</strong>: Added <code>scripts/clean-demo.js</code> (<code>npm run clean:demo</code>) allowing developers to wipe starter content in one command.</li><li><strong>Open Source Licensing</strong>: Added official MIT <code>LICENSE</code> file and declared package metadata.</li></ul>
+<p>---</p>
+<h2>[1.0.0] - 2026-10-21</h2>
+<h3>Added</h3>
+<ul><li><strong>Zero-Hydration SSG Engine</strong>: Production-ready static site generator built on top of Vite and vanilla JavaScript with zero runtime framework overhead.</li><li><strong>Custom Markdown Compiler</strong>: Zero-dependency parser with YAML frontmatter support, word count calculation, and reading time estimation.</li><li><strong>Pretty URL Generator</strong>: Automated pretty routing (<code>/items/<slug>/index.html</code>) alongside flat alias compatibility.</li><li><strong>Full SEO & Syndication Suite</strong>: Automated dynamic sitemaps, robots.txt, and RSS 2.0 feed generation with live filesystem timestamps.</li><li><strong>Cloudflare Edge Ready</strong>: Zero-cost serverless hosting compatibility on Cloudflare Pages.</li></ul>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <div class="footer-logo">⚡ VanillaSSG</div>
+      <p class="footer-tagline">High performance, zero-hydration static site architecture.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer Navigation">
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/items/">Collection Demo</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/changelog.html">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Trust & Legal</h4>
+        <ul>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+          <li><a href="https://github.com/SamSeenX/Vanilla-SSG-by-SamSeen/issues" target="_blank" rel="noopener noreferrer">Contact Us ↗</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 VanillaSSG Starter. Built for speed, search engines, and developer sanity.</p>
+  </div>
+</footer>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

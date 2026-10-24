@@ -7,6 +7,7 @@ export const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Items', href: '/items/' },
   { label: 'About', href: '/about.html' },
+  { label: 'Changelog', href: '/changelog.html' },
   { label: 'Contact', href: 'https://github.com/SamSeenX/Vanilla-SSG-by-SamSeen/issues' },
   { label: 'GitHub ↗', href: 'https://github.com/SamSeenX/Vanilla-SSG-by-SamSeen' }
 ];
