@@ -8,5 +8,10 @@
     "aspectRatio": 1.7778,
     "width": 2400,
     "height": 1350
+  },
+  "og-image": {
+    "aspectRatio": 1.9048,
+    "width": 2400,
+    "height": 1260
   }
 }

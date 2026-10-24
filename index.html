@@ -229,6 +229,49 @@
         </table>
       </div>
     </section>
+
+    <section class="showcase-cards-section" style="margin: 3rem 0; border-top: 1px solid var(--border-color); padding-top: 2.5rem;">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        VISUAL CARD ASSETS
+      </div>
+      <h2>Dynamic OpenGraph Vector Showcase</h2>
+      <p style="color: var(--text-secondary); max-width: 680px; margin-bottom: 2rem;">Every content post automatically receives a branded 1200&times;630 vector preview card in Kinetic Lime and Signal Orange:</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+        <a href="/items/item-one/" style="text-decoration: none; border: 1px solid var(--border-color); border-radius: var(--radius-sm); overflow: hidden; background: var(--bg-surface); transition: border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border-color)'">
+          <img src="/og/item-one.svg" alt="Zero Hydration Architecture Card" width="1200" height="630" loading="lazy" style="display: block; width: 100%; height: auto;">
+          <div style="padding: 1rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--secondary);">01 / ARCHITECTURE</span>
+            <h4 style="margin: 0.35rem 0 0; color: var(--text-primary); font-size: 1.05rem;">Zero Hydration Architecture</h4>
+          </div>
+        </a>
+
+        <a href="/items/item-two/" style="text-decoration: none; border: 1px solid var(--border-color); border-radius: var(--radius-sm); overflow: hidden; background: var(--bg-surface); transition: border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border-color)'">
+          <img src="/og/item-two.svg" alt="Performance First CSS Card" width="1200" height="630" loading="lazy" style="display: block; width: 100%; height: auto;">
+          <div style="padding: 1rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--secondary);">02 / PERFORMANCE</span>
+            <h4 style="margin: 0.35rem 0 0; color: var(--text-primary); font-size: 1.05rem;">Performance-First CSS</h4>
+          </div>
+        </a>
+
+        <a href="/items/item-three/" style="text-decoration: none; border: 1px solid var(--border-color); border-radius: var(--radius-sm); overflow: hidden; background: var(--bg-surface); transition: border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border-color)'">
+          <img src="/og/item-three.svg" alt="SEO & Social Cards Card" width="1200" height="630" loading="lazy" style="display: block; width: 100%; height: auto;">
+          <div style="padding: 1rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--secondary);">03 / SEO</span>
+            <h4 style="margin: 0.35rem 0 0; color: var(--text-primary); font-size: 1.05rem;">SEO &amp; OpenGraph Standard</h4>
+          </div>
+        </a>
+      </div>
+
+      <div style="margin-top: 2rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); overflow: hidden; background: var(--bg-surface);">
+        <picture class="responsive-figure" style="margin: 0; border: none;">
+          <source type="image/avif" srcset="/images/480w/og-image.avif 480w, /images/1200w/og-image.avif 1200w" sizes="(max-width: 640px) 100vw, 1200px">
+          <source type="image/webp" srcset="/images/480w/og-image.webp 480w, /images/1200w/og-image.webp 1200w" sizes="(max-width: 640px) 100vw, 1200px">
+          <img src="/images/1200w/og-image.jpg" alt="VanillaSSG Universal Spec Banner" width="1200" height="630" loading="lazy" decoding="async">
+        </picture>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
