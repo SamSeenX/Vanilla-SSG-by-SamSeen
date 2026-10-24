@@ -40,7 +40,7 @@ function syncFile(relPath) {
 
   // Ensure theme pre-activation script in head to prevent FOUC
   if (!updated.includes('vanilla_app_theme')) {
-    const themeScript = `<script>(function(){var s=localStorage.getItem('vanilla_app_theme'),p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(!s&&p)){document.documentElement.setAttribute('data-theme','dark');}})();</script>`;
+    const themeScript = `<script>(function(){var s=localStorage.getItem('vanilla_app_theme');if(s==='dark'){document.documentElement.setAttribute('data-theme','dark');}})();</script>`;
     updated = updated.replace(
       '<link rel="stylesheet"',
       `${themeScript}\n  <link rel="stylesheet"`

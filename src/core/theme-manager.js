@@ -10,8 +10,7 @@ export class ThemeManager {
 
   init() {
     const savedTheme = localStorage.getItem(this.storageKey);
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    this.theme = savedTheme || (prefersDark ? 'dark' : 'light');
+    this.theme = savedTheme || 'light';
     this.applyTheme(this.theme);
     this.setupListeners();
   }
