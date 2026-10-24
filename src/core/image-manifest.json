@@ -3,5 +3,10 @@
     "aspectRatio": 1.7778,
     "width": 1600,
     "height": 900
+  },
+  "hero-architecture": {
+    "aspectRatio": 1.7778,
+    "width": 2400,
+    "height": 1350
   }
 }
