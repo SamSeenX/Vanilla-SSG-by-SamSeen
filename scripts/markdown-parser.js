@@ -45,6 +45,20 @@ export function renderMarkdown(markdown) {
   // Inline Code
   html = html.replace(/`([^`]+)`/gim, '<code>$1</code>');
 
+  // Images - converts local /images/ paths to high-efficiency picture markup
+  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/gim, (match, alt, src) => {
+    const isLocal = src.startsWith('/images/') || !src.startsWith('http');
+    if (!isLocal) {
+      return `<img src="${src}" alt="${alt}" loading="lazy" decoding="async">`;
+    }
+    const cleanBasename = src.replace(/^\/images\/(?:(?:480w|1200w)\/)?/, '').replace(/\.[^/.]+$/, '');
+    return `<picture class="responsive-figure">
+  <source type="image/avif" srcset="/images/480w/${cleanBasename}.avif 480w, /images/1200w/${cleanBasename}.avif 1200w" sizes="(max-width: 640px) 100vw, 1200px">
+  <source type="image/webp" srcset="/images/480w/${cleanBasename}.webp 480w, /images/1200w/${cleanBasename}.webp 1200w" sizes="(max-width: 640px) 100vw, 1200px">
+  <img src="/images/1200w/${cleanBasename}.jpg" alt="${alt}" loading="lazy" decoding="async">
+</picture>`;
+  });
+
   // Links
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2">$1</a>');
 
@@ -58,7 +72,7 @@ export function renderMarkdown(markdown) {
   const formattedBlocks = blocks.map(block => {
     const trimmed = block.trim();
     if (!trimmed) return '';
-    if (trimmed.startsWith('<h') || trimmed.startsWith('<ul') || trimmed.startsWith('<li')) {
+    if (trimmed.startsWith('<h') || trimmed.startsWith('<ul') || trimmed.startsWith('<li') || trimmed.startsWith('<picture')) {
       return trimmed;
     }
     return `<p>${trimmed.replace(/\n/g, '<br>')}</p>`;

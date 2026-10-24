@@ -5,8 +5,9 @@
   "description": "Production-ready Vanilla JS + Vite Static Site Generator starter kit",
   "license": "MIT",
   "scripts": {
-    "dev": "node scripts/generate-og-cards.js && node scripts/generate-pages.js && node scripts/generate-robots.js && node scripts/generate-sitemap.js && node scripts/generate-feed.js && node scripts/run-cross-linking.js && node scripts/sync-seo-meta.js && vite",
-    "build": "node scripts/generate-og-cards.js && node scripts/generate-pages.js && node scripts/generate-robots.js && node scripts/generate-sitemap.js && node scripts/generate-feed.js && node scripts/run-cross-linking.js && node scripts/sync-layout.js && node scripts/sync-seo-meta.js && vite build",
+    "dev": "node scripts/optimize-images.js && node scripts/generate-og-cards.js && node scripts/generate-pages.js && node scripts/generate-robots.js && node scripts/generate-sitemap.js && node scripts/generate-feed.js && node scripts/run-cross-linking.js && node scripts/sync-seo-meta.js && vite",
+    "build": "node scripts/optimize-images.js && node scripts/generate-og-cards.js && node scripts/generate-pages.js && node scripts/generate-robots.js && node scripts/generate-sitemap.js && node scripts/generate-feed.js && node scripts/run-cross-linking.js && node scripts/sync-layout.js && node scripts/sync-seo-meta.js && vite build",
+    "optimize:images": "node scripts/optimize-images.js",
     "generate": "node scripts/generate-pages.js",
     "generate:og": "node scripts/generate-og-cards.js",
     "generate:robots": "node scripts/generate-robots.js",
@@ -19,6 +20,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "sharp": "^0.35.5",
     "vite": "^6.2.0"
   }
 }

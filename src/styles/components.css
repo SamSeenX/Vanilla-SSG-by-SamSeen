@@ -152,6 +152,22 @@
   color: var(--text-secondary);
 }
 
+.responsive-figure {
+  display: block;
+  margin: 1.75rem 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+}
+
+.responsive-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+}
+
 .cross-ref-link {
   color: var(--accent);
   text-decoration: underline;

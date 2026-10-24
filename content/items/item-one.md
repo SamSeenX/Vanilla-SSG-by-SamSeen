@@ -15,6 +15,8 @@ When client-side frameworks boot up, the browser must download, parse, and execu
 
 ## The Zero-Hydration Advantage
 
+![Zero Hydration Architecture Overview](/images/sample-hero.png)
+
 By contrast, an SSG outputs pre-compiled HTML markup straight from edge servers.
 
 - **Instant First Contentful Paint**: The browser starts rendering on the very first network chunk.
