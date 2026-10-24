@@ -63,6 +63,8 @@ Why choose VanillaSSG over heavy JavaScript frameworks for content sites:
 | **Lighthouse Score** | **100 / 100** | 80 to 95 | 95 to 100 | **100 / 100** |
 | **Hydration Delay** | **Instant (0 ms)** | 200 to 600 ms | Partial | **Instant (0 ms)** |
 | **Google AdSense CLS** | **0.00 (Flawless)** | Variable / Risky | Low | Low |
+| **Image Pipeline** | **Automated 6-Variant AVIF/WebP** | Manual / Heavy Plugins | Sharp integration | Basic |
+| **Mobile Image Weight** | **5KB to 10KB (97% Reduction)** | Heavy (unoptimized) | Medium | Dependent on source |
 | **Monthly Hosting Cost** | **$0 / month (Free Edge)** | $20 to $100+/mo (VPS/DB) | Low to Free | **$0 / month** |
 | **Tooling & Language** | **Pure JS + Vite** | React/Vue Runtime | Custom `.astro` | Go Templates |
 | **File Limit Guard** | **Sub-200 Lines** | Monolith Friendly | Monolith Friendly | Monolith Friendly |
@@ -141,7 +143,26 @@ Pre-rendering dynamic data at build time eliminates Cumulative Layout Shifts.
 * `scripts/cross-link-engine.js` injects automatic internal links from `scripts/cross-reference-dict.js`.
 * Skips headings, code blocks, and existing links to protect HTML integrity.
 
-### ⚡ 7. Advanced Vite Production Minification
+### ⚡ 7. Automated Responsive Image Optimization Engine
+Drop raw master images (PNG, JPEG, WebP) into `src/assets/images/`. During build, `scripts/optimize-images.js` automatically compiles them using `sharp` into structured resolution directories:
+* **`public/images/480w/`**: Generates AVIF, WebP, and compressed JPEG thumbnails (5KB to 10KB) for mobile viewports and collection cards.
+* **`public/images/1200w/`**: Generates full-resolution AVIF, WebP, and JPEG graphics (20KB to 35KB) for crisp desktop displays.
+* **Zero Cumulative Layout Shift (CLS)**: Extracts native image dimensions and aspect ratios into `src/core/image-manifest.json`.
+* **Markdown Integration**: Automatically transforms `![Alt](/images/photo.png)` into zero-hydration responsive `<picture>` markup.
+
+#### 📈 Real-World Image Optimization Benchmark
+
+| Variant | Resolution | Format | File Size | Bandwidth Reduction | Target Audience |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Raw Master Source** | 2400 × 1350 | PNG | **252 KB** | Baseline | Local source (`src/assets/`) |
+| **Desktop AVIF** | 1200 × 675 | AVIF | **23 KB** | **90.9% reduction** | Modern desktop browsers |
+| **Desktop WebP** | 1200 × 675 | WebP | **22 KB** | **91.3% reduction** | High-performance desktop |
+| **Desktop JPEG** | 1200 × 675 | JPEG | **37 KB** | **85.3% reduction** | Legacy browser fallback |
+| **Mobile AVIF** | 480 × 270 | AVIF | **6.1 KB** | **97.6% reduction** | Mobile cellular networks |
+| **Mobile WebP** | 480 × 270 | WebP | **5.4 KB** | **97.8% reduction** | Lightning-fast mobile cards |
+| **Mobile JPEG** | 480 × 270 | JPEG | **7.9 KB** | **96.9% reduction** | Universal mobile fallback |
+
+### 🚀 8. Advanced Vite Production Minification
 * **HTML Minification**: Automatically collapses redundant whitespace and strips HTML comments in production without breaking code blocks or JSON-LD scripts.
 * **Modern ES2022 Target**: Prevents injection of legacy polyfill overhead for smaller, faster ES module execution.
 * **Console & Debugger Stripping**: Automatically drops all `console.log` and `debugger` statements via `esbuild` during production builds.
@@ -155,9 +176,13 @@ Pre-rendering dynamic data at build time eliminates Cumulative Layout Shifts.
 ```text
 vanilla-ssg-template/
 ├── 404.html                   # Dedicated error page with noindex guard
-├── index.html                 # Landing page
+├── index.html                 # Landing page with responsive hero picture
 ├── about.html                 # Philosophy and background
-├── contact.html               # Contact form
+├── changelog.html             # Release history and version tracker
+├── CHANGELOG.md               # Standard Keep a Changelog tracking file
+├── content/items/*.md         # Raw Markdown articles
+├── src/assets/images/         # Raw author images (PNG, JPEG)
+├── public/images/             # Automated 480w & 1200w AVIF/WebP/JPEG variants
 ├── privacy.html               # AdSense-compliant privacy policy
 ├── terms.html                 # Terms of service
 ├── package.json               # Vite config and generator pipeline

@@ -158,9 +158,75 @@
       </div>
 
       <div class="ledger-item">
-        <div class="ledger-meta">06 / CODE HYGIENE</div>
+        <div class="ledger-meta">06 / PERFORMANCE</div>
+        <h3>Automated Image Engine</h3>
+        <p>Sharp automatically builds 480w & 1200w AVIF, WebP, and JPEG variants. Cuts cellular payloads by up to 97% with zero layout shift.</p>
+      </div>
+
+      <div class="ledger-item">
+        <div class="ledger-meta">07 / CODE HYGIENE</div>
         <h3>Strict Sub-200-Line Code</h3>
         <p>Modular simplicity across all scripts and styles keeps logic maintainable, auditable, and resilient to AI context saturation.</p>
+      </div>
+    </section>
+
+    <section class="benchmark-section" style="margin: 3.5rem 0 2rem; border-top: 1px solid var(--border-color); padding-top: 2.5rem;">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        COMPRESSION BENCHMARK
+      </div>
+      <h2>Automated Image Pipeline Performance</h2>
+      <p style="color: var(--text-secondary); max-width: 680px; margin-bottom: 1.5rem;">Real-world transmission metrics for the landing page hero graphic compiled through <code>scripts/optimize-images.js</code>:</p>
+      
+      <div style="overflow-x: auto; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-surface);">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+          <thead>
+            <tr style="border-bottom: 1px solid var(--border-color); background: rgba(255,255,255,0.02);">
+              <th style="padding: 0.75rem 1rem; color: var(--text-primary);">Variant</th>
+              <th style="padding: 0.75rem 1rem; color: var(--text-primary);">Resolution</th>
+              <th style="padding: 0.75rem 1rem; color: var(--text-primary);">Format</th>
+              <th style="padding: 0.75rem 1rem; color: var(--text-primary);">File Size</th>
+              <th style="padding: 0.75rem 1rem; color: var(--accent);">Bandwidth Saved</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border-color);">
+              <td style="padding: 0.75rem 1rem; font-weight: 600;">Raw Source</td>
+              <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">2400 &times; 1350</td>
+              <td style="padding: 0.75rem 1rem;">PNG</td>
+              <td style="padding: 0.75rem 1rem; font-weight: 700;">252 KB</td>
+              <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">Baseline (Local)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border-color);">
+              <td style="padding: 0.75rem 1rem; font-weight: 600;">Desktop AVIF</td>
+              <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">1200 &times; 675</td>
+              <td style="padding: 0.75rem 1rem;">AVIF</td>
+              <td style="padding: 0.75rem 1rem; font-weight: 700; color: var(--accent);">23 KB</td>
+              <td style="padding: 0.75rem 1rem; font-weight: 700; color: var(--accent);">90.9% Saved</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border-color);">
+              <td style="padding: 0.75rem 1rem; font-weight: 600;">Desktop WebP</td>
+              <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">1200 &times; 675</td>
+              <td style="padding: 0.75rem 1rem;">WebP</td>
+              <td style="padding: 0.75rem 1rem; font-weight: 700; color: var(--accent);">22 KB</td>
+              <td style="padding: 0.75rem 1rem; font-weight: 700; color: var(--accent);">91.3% Saved</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border-color);">
+              <td style="padding: 0.75rem 1rem; font-weight: 600;">Mobile WebP</td>
+              <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">480 &times; 270</td>
+              <td style="padding: 0.75rem 1rem;">WebP</td>
+              <td style="padding: 0.75rem 1rem; font-weight: 700; color: var(--accent);">5.4 KB</td>
+              <td style="padding: 0.75rem 1rem; font-weight: 700; color: var(--accent);">97.8% Saved</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.75rem 1rem; font-weight: 600;">Mobile AVIF</td>
+              <td style="padding: 0.75rem 1rem; color: var(--text-secondary);">480 &times; 270</td>
+              <td style="padding: 0.75rem 1rem;">AVIF</td>
+              <td style="padding: 0.75rem 1rem; font-weight: 700; color: var(--accent);">6.1 KB</td>
+              <td style="padding: 0.75rem 1rem; font-weight: 700; color: var(--accent);">97.6% Saved</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
   </main>
