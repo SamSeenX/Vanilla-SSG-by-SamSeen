@@ -17,8 +17,12 @@
   font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 700;
-  color: var(--accent);
+  color: #14532d;
   margin-bottom: 1.25rem;
+}
+
+[data-theme="dark"] .status-pill {
+  color: var(--accent);
 }
 
 .status-dot {

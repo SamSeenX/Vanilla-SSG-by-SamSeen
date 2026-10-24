@@ -125,6 +125,13 @@ function smartCssInlinerPlugin(isProd) {
         } else {
           content = content.replace(linkRegex, `<link rel="preload" href="/assets/${cssFileName}" as="style"><link rel="stylesheet" href="/assets/${cssFileName}">`);
         }
+        // Move JS module script to end of body to prevent critical path latency
+        const jsRegex = /<script\s+type="module"\s+crossorigin\s+src="(\/assets\/[^"]+\.js)"><\/script>/gi;
+        const jsMatch = content.match(jsRegex);
+        if (jsMatch && jsMatch.length > 0) {
+          content = content.replace(jsRegex, '');
+          content = content.replace('</body>', `${jsMatch.join('')}</body>`);
+        }
         fs.writeFileSync(file, content, 'utf8');
       });
 
