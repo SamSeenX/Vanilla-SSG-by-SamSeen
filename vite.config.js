@@ -13,6 +13,7 @@ function getHtmlInputs() {
     
     const entries = fs.readdirSync(fullDir, { withFileTypes: true });
     entries.forEach((entry) => {
+      if (entry.name === 'dist' || entry.name === 'node_modules') return;
       if (entry.isFile() && entry.name.endsWith('.html')) {
         const file = entry.name;
         const key = dir ? `${dir}_${file.replace('.html', '')}` : (file === 'index.html' ? 'main' : file.replace('.html', ''));
@@ -79,11 +80,67 @@ function layoutConsistencyPlugin(isProd) {
   };
 }
 
+function smartCssInlinerPlugin(isProd) {
+  const INLINE_SIZE_LIMIT = 20 * 1024; // 20 KB threshold
+
+  return {
+    name: 'smart-css-inliner-plugin',
+    enforce: 'post',
+    apply: 'build',
+    closeBundle() {
+      if (!isProd) return;
+      const distDir = resolve(__dirname, 'dist');
+      if (!fs.existsSync(distDir)) return;
+
+      const assetsDir = resolve(distDir, 'assets');
+      if (!fs.existsSync(assetsDir)) return;
+
+      const cssFiles = fs.readdirSync(assetsDir).filter(f => f.endsWith('.css'));
+      if (cssFiles.length === 0) return;
+
+      const cssFileName = cssFiles[0];
+      const cssPath = resolve(assetsDir, cssFileName);
+      const cssContent = fs.readFileSync(cssPath, 'utf8');
+      const cssSize = Buffer.byteLength(cssContent, 'utf8');
+
+      const htmlFiles = [];
+      function collectHtml(dir) {
+        fs.readdirSync(dir, { withFileTypes: true }).forEach(entry => {
+          const res = resolve(dir, entry.name);
+          if (entry.isDirectory() && entry.name !== 'assets') {
+            collectHtml(res);
+          } else if (entry.isFile() && entry.name.endsWith('.html')) {
+            htmlFiles.push(res);
+          }
+        });
+      }
+      collectHtml(distDir);
+
+      const linkRegex = new RegExp(`<link[^>]+href="[/]?[^"]*${cssFileName}"[^>]*>`, 'gi');
+
+      htmlFiles.forEach(file => {
+        let content = fs.readFileSync(file, 'utf8');
+        if (cssSize <= INLINE_SIZE_LIMIT) {
+          content = content.replace(linkRegex, `<style>${cssContent}</style>`);
+        } else {
+          content = content.replace(linkRegex, `<link rel="preload" href="/assets/${cssFileName}" as="style"><link rel="stylesheet" href="/assets/${cssFileName}">`);
+        }
+        fs.writeFileSync(file, content, 'utf8');
+      });
+
+      console.log(`[Smart CSS Inliner] Processed ${htmlFiles.length} HTML files (${cssSize <= INLINE_SIZE_LIMIT ? 'Inlined CSS' : 'Preloaded External CSS'}).`);
+    }
+  };
+}
+
 export default defineConfig(({ command, mode }) => {
   const isProd = command === 'build' || mode === 'production';
 
   return {
-    plugins: [layoutConsistencyPlugin(isProd)],
+    plugins: [
+      layoutConsistencyPlugin(isProd),
+      smartCssInlinerPlugin(isProd)
+    ],
     esbuild: {
       drop: isProd ? ['console', 'debugger'] : []
     },
