@@ -80,11 +80,12 @@ function layoutConsistencyPlugin(isProd) {
   };
 }
 
-function smartCssInlinerPlugin(isProd) {
-  const INLINE_SIZE_LIMIT = 20 * 1024; // 20 KB threshold
+function smartAssetInlinerPlugin(isProd) {
+  const CSS_INLINE_LIMIT = 20 * 1024; // Inline CSS up to 20 KB
+  const JS_INLINE_LIMIT = 5 * 1024;   // Inline critical JS up to 5 KB
 
   return {
-    name: 'smart-css-inliner-plugin',
+    name: 'smart-asset-inliner-plugin',
     enforce: 'post',
     apply: 'build',
     closeBundle() {
@@ -96,12 +97,22 @@ function smartCssInlinerPlugin(isProd) {
       if (!fs.existsSync(assetsDir)) return;
 
       const cssFiles = fs.readdirSync(assetsDir).filter(f => f.endsWith('.css'));
-      if (cssFiles.length === 0) return;
+      const cssFileName = cssFiles[0] || '';
+      let cssContent = '';
+      let cssSize = 0;
+      if (cssFileName) {
+        cssContent = fs.readFileSync(resolve(assetsDir, cssFileName), 'utf8');
+        cssSize = Buffer.byteLength(cssContent, 'utf8');
+      }
 
-      const cssFileName = cssFiles[0];
-      const cssPath = resolve(assetsDir, cssFileName);
-      const cssContent = fs.readFileSync(cssPath, 'utf8');
-      const cssSize = Buffer.byteLength(cssContent, 'utf8');
+      const jsFiles = fs.readdirSync(assetsDir).filter(f => f.startsWith('main-') && f.endsWith('.js'));
+      const jsFileName = jsFiles[0] || '';
+      let jsContent = '';
+      let jsSize = 0;
+      if (jsFileName) {
+        jsContent = fs.readFileSync(resolve(assetsDir, jsFileName), 'utf8');
+        jsSize = Buffer.byteLength(jsContent, 'utf8');
+      }
 
       const htmlFiles = [];
       function collectHtml(dir) {
@@ -116,26 +127,33 @@ function smartCssInlinerPlugin(isProd) {
       }
       collectHtml(distDir);
 
-      const linkRegex = new RegExp(`<link[^>]+href="[/]?[^"]*${cssFileName}"[^>]*>`, 'gi');
+      const linkRegex = cssFileName ? new RegExp(`<link[^>]+href="[/]?[^"]*${cssFileName}"[^>]*>`, 'gi') : null;
+      const jsRegex = /<script\s+type="module"\s+crossorigin\s+src="(\/assets\/[^"]+\.js)"><\/script>/gi;
 
       htmlFiles.forEach(file => {
         let content = fs.readFileSync(file, 'utf8');
-        if (cssSize <= INLINE_SIZE_LIMIT) {
-          content = content.replace(linkRegex, `<style>${cssContent}</style>`);
-        } else {
-          content = content.replace(linkRegex, `<link rel="preload" href="/assets/${cssFileName}" as="style"><link rel="stylesheet" href="/assets/${cssFileName}">`);
+        if (linkRegex) {
+          if (cssSize <= CSS_INLINE_LIMIT) {
+            content = content.replace(linkRegex, `<style>${cssContent}</style>`);
+          } else {
+            content = content.replace(linkRegex, `<link rel="preload" href="/assets/${cssFileName}" as="style"><link rel="stylesheet" href="/assets/${cssFileName}">`);
+          }
         }
-        // Move JS module script to end of body to prevent critical path latency
-        const jsRegex = /<script\s+type="module"\s+crossorigin\s+src="(\/assets\/[^"]+\.js)"><\/script>/gi;
-        const jsMatch = content.match(jsRegex);
-        if (jsMatch && jsMatch.length > 0) {
+
+        if (jsSize > 0 && jsSize <= JS_INLINE_LIMIT) {
           content = content.replace(jsRegex, '');
-          content = content.replace('</body>', `${jsMatch.join('')}</body>`);
+          content = content.replace('</body>', `<script type="module">${jsContent}</script></body>`);
+        } else {
+          const jsMatch = content.match(jsRegex);
+          if (jsMatch && jsMatch.length > 0) {
+            content = content.replace(jsRegex, '');
+            content = content.replace('</body>', `${jsMatch.join('')}</body>`);
+          }
         }
         fs.writeFileSync(file, content, 'utf8');
       });
 
-      console.log(`[Smart CSS Inliner] Processed ${htmlFiles.length} HTML files (${cssSize <= INLINE_SIZE_LIMIT ? 'Inlined CSS' : 'Preloaded External CSS'}).`);
+      console.log(`[Smart Asset Inliner] Processed ${htmlFiles.length} HTML files (CSS: ${cssSize <= CSS_INLINE_LIMIT ? 'Inlined' : 'External'}, JS: ${jsSize <= JS_INLINE_LIMIT ? 'Inlined' : 'External'}).`);
     }
   };
 }
@@ -146,7 +164,7 @@ export default defineConfig(({ command, mode }) => {
   return {
     plugins: [
       layoutConsistencyPlugin(isProd),
-      smartCssInlinerPlugin(isProd)
+      smartAssetInlinerPlugin(isProd)
     ],
     esbuild: {
       drop: isProd ? ['console', 'debugger'] : []
