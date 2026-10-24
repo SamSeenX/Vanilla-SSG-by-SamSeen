@@ -28,7 +28,7 @@ function escapeXml(unsafe) {
 
 function generateSvgCard({ title, category, tagline }) {
   const safeTitle = escapeXml(title);
-  const safeCategory = escapeXml(category || 'Architecture');
+  const safeCategory = escapeXml((category || 'Architecture').toUpperCase());
   const safeTagline = escapeXml(tagline || '');
 
   return `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +49,7 @@ function generateSvgCard({ title, category, tagline }) {
   <!-- Category Badge in Signal Orange -->
   <rect x="80" y="85" width="220" height="40" rx="6" fill="#f97316" fill-opacity="0.12" stroke="#f97316" stroke-width="1" stroke-opacity="0.4"/>
   <text x="190" y="111" fill="#f97316" font-family="ui-monospace, monospace" font-size="16" font-weight="700" text-anchor="middle" letter-spacing="1.5">
-    ${safeCategory.toUpperCase()}
+    ${safeCategory}
   </text>
 
   <!-- Main Title -->

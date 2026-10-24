@@ -16,7 +16,7 @@
   <!-- Category Badge in Signal Orange -->
   <rect x="80" y="85" width="220" height="40" rx="6" fill="#f97316" fill-opacity="0.12" stroke="#f97316" stroke-width="1" stroke-opacity="0.4"/>
   <text x="190" y="111" fill="#f97316" font-family="ui-monospace, monospace" font-size="16" font-weight="700" text-anchor="middle" letter-spacing="1.5">
-    MONETIZATION &AMP; SEO
+    MONETIZATION &amp; SEO
   </text>
 
   <!-- Main Title -->

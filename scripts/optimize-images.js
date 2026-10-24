@@ -65,31 +65,40 @@ async function optimize() {
     const origWidth = metadata.width || 1200;
     const origHeight = metadata.height || 800;
 
+    const hasAlpha = Boolean(metadata.hasAlpha);
+
     manifest[basename] = {
       aspectRatio: Number((origWidth / origHeight).toFixed(4)),
       width: origWidth,
-      height: origHeight
+      height: origHeight,
+      hasAlpha
     };
 
     for (const target of TARGETS) {
       const targetWidth = Math.min(target.width, origWidth);
       const outDir = path.join(PUBLIC_IMG_DIR, target.dir);
 
-      // AVIF
+      // AVIF (Full Alpha Transparency Preserved)
       await sharp(inputPath)
         .resize({ width: targetWidth, withoutEnlargement: true })
         .avif({ quality: target.quality.avif, effort: 4 })
         .toFile(path.join(outDir, `${basename}.avif`));
 
-      // WebP
+      // WebP (Full Alpha Transparency Preserved)
       await sharp(inputPath)
         .resize({ width: targetWidth, withoutEnlargement: true })
         .webp({ quality: target.quality.webp, effort: 4 })
         .toFile(path.join(outDir, `${basename}.webp`));
 
-      // JPEG Fallback
-      await sharp(inputPath)
-        .resize({ width: targetWidth, withoutEnlargement: true })
+      // Fallback: If alpha is present, flatten cleanly on white or preserve fallback format
+      const fallbackPipeline = sharp(inputPath)
+        .resize({ width: targetWidth, withoutEnlargement: true });
+
+      if (hasAlpha) {
+        fallbackPipeline.flatten({ background: '#ffffff' });
+      }
+
+      await fallbackPipeline
         .jpeg({ quality: target.quality.jpeg, mozjpeg: true })
         .toFile(path.join(outDir, `${basename}.jpg`));
     }

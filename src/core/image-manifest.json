@@ -2,16 +2,19 @@
   "sample-hero": {
     "aspectRatio": 1,
     "width": 1200,
-    "height": 1200
+    "height": 1200,
+    "hasAlpha": false
   },
   "hero-architecture": {
     "aspectRatio": 1.7778,
     "width": 2400,
-    "height": 1350
+    "height": 1350,
+    "hasAlpha": false
   },
   "og-image": {
     "aspectRatio": 1.9048,
     "width": 2400,
-    "height": 1260
+    "height": 1260,
+    "hasAlpha": false
   }
 }
