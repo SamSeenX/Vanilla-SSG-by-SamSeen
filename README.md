@@ -290,7 +290,14 @@ npm run build
 ```
 Compiles markdown, builds vector OG cards, outputs sitemap, syncs layout, and emits production static assets into `dist/`.
 
-### 5. Automatic Lighthouse 100 Guardrails
+### 5. Keeping Your Site Updated
+When updates and architectural improvements are published to the upstream VanillaSSG template:
+```bash
+npm run update
+```
+This safely fetches and merges the latest core improvements from `upstream/main` without disturbing your custom articles, images, or branding.
+
+### 6. Automatic Lighthouse 100 Guardrails
 VanillaSSG comes pre-configured with zero-config performance guardrails:
 * **Smart Asset Inlining**: Critical CSS (under 20 KB) and tiny runtime JS (under 5 KB) are automatically inlined directly into HTML during production builds, eliminating render-blocking chains.
 * **Responsive Visual Pipeline**: Multi-resolution AVIF and WebP generation with density-aware picture markup (`sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, 1200px"`) prevents high-DPR mobile devices from over-fetching desktop assets.
