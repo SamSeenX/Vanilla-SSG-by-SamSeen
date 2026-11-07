@@ -1,0 +1,15 @@
+# VanillaSSG
+
+> High-performance, zero-hydration static site architecture built with pure HTML, Vanilla JavaScript, and Vite. Designed for 100/100 Lighthouse performance, sub-200-line modularity, and $0 edge hosting on Cloudflare Pages.
+
+## Core Documentation & Resources
+- [Architecture Blueprint](https://ssg.samseen.dev/items/item-one/): Detailed breakdown of zero-hydration static builds and performance metrics
+- [Dynamic OG Vector Generator](https://ssg.samseen.dev/items/item-two/): Programmatic SVG card generation for social sharing
+- [Cross-Referencing Engine](https://ssg.samseen.dev/items/item-three/): Automated bidirectional topic linking
+- [Changelog](https://ssg.samseen.dev/changelog.html): Chronological version history, enhancements, and milestones
+- [About VanillaSSG](https://ssg.samseen.dev/about.html): Background, architectural principles, and developer guide
+
+## Machine-Readable Feeds & Catalogs
+- [Sitemap](https://ssg.samseen.dev/sitemap.xml): Complete canonical index of all static routes and articles
+- [RSS Feed](https://ssg.samseen.dev/feed.xml): Real-time XML content distribution feed
+- [Robots Directives](https://ssg.samseen.dev/robots.txt): Crawler permissions and indexation parameters

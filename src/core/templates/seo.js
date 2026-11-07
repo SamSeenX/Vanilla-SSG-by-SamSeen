@@ -39,5 +39,9 @@ export function getSeoMetaHtml({
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${cleanTitle}">
   <meta name="twitter:description" content="${cleanDesc}">
-  <meta name="twitter:image" content="${image}">`;
+  <meta name="twitter:image" content="${image}">
+
+  <!-- Agentic Resource Discovery & LLM Directives -->
+  <link rel="ard" type="application/json" href="${SITE_URL}/.well-known/ard.json">
+  <link rel="alternate" type="text/plain" href="${SITE_URL}/llms.txt" title="LLM Content Manifest">`;
 }
