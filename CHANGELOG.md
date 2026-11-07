@@ -5,6 +5,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [1.2.0] - 2026-11-07
+
+### Added
+- **Agentic Browsing & AI Discoverability**: Implemented compliant `public/llms.txt` documentation manifest following the official standard with required `# Title` header and verified links.
+- **Agentic Resource Discovery (ARD)**: Added machine-readable `public/.well-known/ard.json` manifest linked via `<link rel="ard">` in `src/core/templates/seo.js` to eliminate malformed HTML-fallback 404 errors during AI agent crawls.
+- **LLM Content Manifest Link**: Registered `<link rel="alternate" type="text/plain" href="/llms.txt">` in HTML document heads for automated agent indexation.
+- **Framework Update Manager**: Added `scripts/check-updates.js` (cached 24-hr GitHub release checker) and `scripts/update-framework.js` (`npm run update`) to allow downstream sites to pull template upgrades safely via Git upstream merge.
+
+### Fixed
+- **Cumulative Layout Shift (CLS) on Hero Element**: Locked `.hero-image-wrap`, `.responsive-figure`, and `<img>` to explicit `aspect-ratio: 16 / 9` and `width: 100%` inline and in stylesheet rules, eliminating layout movement during viewport resize and mobile agent crawls.
+- **Smart Asset Inlining**: Upgraded `vite.config.js` to automatically inline tiny runtime JS modules (under 5 KB) alongside critical CSS (under 20 KB), eliminating chained render-blocking requests in Lighthouse audits.
+
+---
+
 ## [1.1.0] - 2026-10-24
 
 ### Added
