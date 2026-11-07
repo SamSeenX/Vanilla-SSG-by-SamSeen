@@ -1,18 +1,59 @@
 {
-  "$schema": "https://agentic.dev/schemas/ard-v1.json",
-  "name": "VanillaSSG",
-  "description": "Zero-Hydration Vanilla JS Static Site Generator with 100/100 Lighthouse performance",
-  "version": "1.0.1",
-  "homepage": "https://ssg.samseen.dev",
-  "documentation": "https://ssg.samseen.dev/about.html",
-  "resources": {
-    "llms": "https://ssg.samseen.dev/llms.txt",
-    "sitemap": "https://ssg.samseen.dev/sitemap.xml",
-    "feed": "https://ssg.samseen.dev/feed.xml"
-  },
-  "capabilities": {
-    "staticOnly": true,
-    "zeroHydration": true,
-    "webMCP": false
-  }
+  "@context": "https://schema.agenticresourcediscovery.org/v0.91/context.jsonld",
+  "specVersion": "1.0",
+  "entries": [
+    {
+      "identifier": "urn:air:ssg.samseen.dev:server:documentation",
+      "displayName": "VanillaSSG Static Documentation & Knowledge Catalog",
+      "type": "text/markdown",
+      "url": "https://ssg.samseen.dev/llms.txt",
+      "description": "High-performance, zero-hydration static site generator architecture blueprint, guides, and technical reference.",
+      "version": "1.2.0",
+      "updatedAt": "2026-11-07T00:00:00Z",
+      "capabilities": [
+        "StaticSiteGeneration",
+        "EdgePerformance",
+        "ZeroHydrationArchitecture"
+      ],
+      "representativeQueries": [
+        "explain the zero hydration static architecture of VanillaSSG",
+        "find responsive image optimization practices for static sites",
+        "inspect the 200-line modularity rule for web apps"
+      ]
+    },
+    {
+      "identifier": "urn:air:ssg.samseen.dev:server:feed",
+      "displayName": "VanillaSSG Content Distribution Feed",
+      "type": "application/rss+xml",
+      "url": "https://ssg.samseen.dev/feed.xml",
+      "description": "Syndicated content feed providing real-time updates and releases for the VanillaSSG project.",
+      "version": "1.2.0",
+      "updatedAt": "2026-11-07T00:00:00Z",
+      "capabilities": [
+        "ContentDistribution",
+        "Syndication"
+      ],
+      "representativeQueries": [
+        "get latest articles and announcements from VanillaSSG",
+        "subscribe to VanillaSSG RSS feed"
+      ]
+    },
+    {
+      "identifier": "urn:air:ssg.samseen.dev:server:sitemap",
+      "displayName": "VanillaSSG Canonical Sitemap Index",
+      "type": "application/xml",
+      "url": "https://ssg.samseen.dev/sitemap.xml",
+      "description": "Complete canonical URL registry of all static routes and articles.",
+      "version": "1.2.0",
+      "updatedAt": "2026-11-07T00:00:00Z",
+      "capabilities": [
+        "ResourceCatalog",
+        "URLExploration"
+      ],
+      "representativeQueries": [
+        "list all indexed pages and articles on ssg.samseen.dev",
+        "find URL hierarchy for VanillaSSG"
+      ]
+    }
+  ]
 }
